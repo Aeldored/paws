@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+    <link rel="stylesheet" href="style.css">
+    <link rel="icon" type="image/x-icon" href="animal-shelter.png">
+    <title>Animal</title>
+</head>
+
+<body class="light">
+    <!-- Sidebar -->
+    <div class="sidebar">
+        <ul class="side-menu">
+            <a href="#" class="logo">
+                <img src="pet-house.png">
+                <div class="logo-name"><span>PAWS</span>&#10084</div>
+            </a>
+        </ul>
+        <ul class="side-menu">
+            <li class="active"><a href="#home-section"><i class='bx bxs-dashboard'></i>Home</a></li>
+            <li><a href="#about-section"><i class='bx bx-store-alt'></i>About</a></li>
+            <li><a href="#donate-section"><i class='bx bx-coin-stack'></i>Donate</a></li>
+            <li><a href="#adopt-section" onclick="adjustScroll('adopt-section')"><i class='bx bxs-dog'></i>Find a Pet</a></li>
+            <li><a href="#involved-section"><i class='bx bx-group'></i>Get Involved</a></li>
+            <li><a href="#"><i class='bx bxs-contact'></i>Contact</a></li>  
+        </ul>
+        <ul class="side-menu">
+            <li>
+                <a href="#" class="logout">
+                    <i class='bx bx-log-out-circle'></i>
+                    Logout
+                </a>
+            </li>
+        </ul>
+    </div>
+    <!-- End of Sidebar -->
+
+    <!-- Main Content -->
+    <div class="content">
+        <!-- Navbar -->
+        <nav>
+            <div>
+                <i class='bx bx-menu'></i>
+            </div>
+            <div class="nav-r">
+                <div onclick="tdnn()" class="tdnn day">
+                <div class="moon sun"></div>
+                </div>
+                <a href="#" class="notif">
+                    <i class='bx bx-bell'></i>
+                    <span class="count">12</span>
+                </a>
+                <a href="#" class="profile">
+                    <img src="images/cat.jpg">
+                </a>
+            </div>
+        </nav>
+        <!-- End of Navbar -->
+        <main>
+            <!-- main secitons -->
+            <section class="home-section" id="home-section">
+                <div class="image-container">
+                    <h1>Help care for the animals</h1>
+                    <div class="objective">
+                        <ul class="obj-section">
+                            <li><a href="#"></i>Donate</a></li>
+                            <li><a href="#"></i>Sponsor</a></li>
+                            <li><a href="#"></i>Foster</a></li>  
+                        </ul>
+                    </div>
+                    <img src="images/home.png" alt="cat and dogs in photo">
+                </div>
+            </section>
+
+            <section class="about-section" id="about-section">
+                <h2 class="section-title">About Us</h2>
+                <ul class="adopt-animal">
+                    <li class="animal-card">
+                        <div class="card-image">
+                            <img src="cat.jpg" alt="Cat" />
+                        </div>
+                        <div class="card-content">
+                            <h3 class="animal-name">Whiskers</h3>
+                            <p class="animal-breed">Breed: Persian</p>
+                            <p class="animal-age">Age: 2 years</p>
+                            <p class="animal-description">Whiskers is a friendly and playful cat looking for a loving home!</p>
+                            <button class="adopt-button">Adopt Me!</button>
+                        </div>
+                    </li>
+                </ul>
+            </section>
+
+            <section class="adopt-section" id="adopt-section">
+                <h2 class="section-title">Find your Fur-ever Friend Here</h2>
+                <div>
+                    <ul class="adopt-animal">
+                        <li class="animal-card">
+                            <div class="card-image">
+                                <img src="cat.jpg" alt="Cat" />
+                            </div>
+                            <div class="card-content">
+                                <h3 class="animal-name">Whiskers</h3>
+                                <p class="animal-breed">Breed: Persian</p>
+                                <p class="animal-age">Age: 2 years</p>
+                                <p class="animal-description">Whiskers is a friendly and playful cat looking for a loving home!</p>
+                                <button class="adopt-button">Know More</button>
+                            </div>
+                        </li>
+                        <!-- Add more animal cards as needed -->
+                    </ul>
+                </div>
+
+                <div>
+                    <ul class="adopt-animal">
+                        <li class="animal-card">
+                            <div class="card-image">
+                                <img src="cat.jpg" alt="Cat" />
+                            </div>
+                            <div class="card-content">
+                                <h3 class="animal-name">Whiskers</h3>
+                                <p class="animal-breed">Breed: Persian</p>
+                                <p class="animal-age">Age: 2 years</p>
+                                <p class="animal-description">Whiskers is a friendly and playful cat looking for a loving home!</p>
+                                <button class="adopt-button">Know More</button>
+                            </div>
+                        </li>
+                        <!-- Add more animal cards as needed -->
+                    </ul>
+                </div>
+            </section>
+            <!-- End of Insights -->
+
+            <div class="bottom-data" id="involved-section">
+                <div class="orders">
+                    <h3>Get Involved</h3>
+    
+                </div>
+
+                <!-- donate -->
+                <div class="reminders" id="donate-section">
+                    <h3>Donate</h3>
+
+                </div>
+
+                <!-- End of Reminders-->
+
+            </div>
+
+        </main>
+
+    </div>
+
+    <script src="index.js"></script>  
+</body>
+</html>
