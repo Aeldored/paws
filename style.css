@@ -508,11 +508,6 @@ body{
     aspect-ratio: 17 / 9; /* Sets the aspect ratio */
 }
 
-img{
-    filter: drop-shadow(
-        0px 4px 15px rgba(59, 59, 59, 0.4)
-        )
-}
 .adopt-section, .about-section {
     /* Background color for the section */
     background: var(--light); 
