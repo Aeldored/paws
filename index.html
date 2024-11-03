@@ -66,9 +66,9 @@
                     <h1>Help care for the animals</h1>
                     <div class="objective">
                         <ul class="obj-section">
-                            <li><a href="#"></i>Donate</a></li>
-                            <li><a href="#"></i>Sponsor</a></li>
-                            <li><a href="#"></i>Foster</a></li>  
+                            <li><a href="#" class="popover-trigger" data-form="donateForm">Donate</a></li>
+                            <li><a href="#" class="popover-trigger" data-form="sponsorForm">Sponsor</a></li>
+                            <li><a href="#" class="popover-trigger" data-form="fosterForm">Foster</a></li>  
                         </ul>
                     </div>
                     <img src="images/home.png" alt="cat and dogs in photo">
@@ -134,13 +134,13 @@
             <!-- End of main-content -->
 
             <div class="bottom-data" id="involved-section">
-                <div class="orders">
+                <div class="involved">
                     <h3>Get Involved</h3>
     
                 </div>
 
                 <!-- donate -->
-                <div class="reminders" id="donate-section">
+                <div class="donate" id="donate-section">
                     <h3>Donate</h3>
 
                 </div>
@@ -166,7 +166,53 @@
         </main>
 
     </div>
+           <!-- Popover Cards with Embedded Google Forms -->
+           <div class="popover-card" id="donateForm">
+            <h3>Donate</h3>
+            <iframe src="https://docs.google.com/forms/d/e/1FAIpQLScXuZrEfNzcChiMxLbIts06f73zUPoI_alR3wCkiyxO-vM5fQ/viewform?embedded=true" width="700" height="520" frameborder="0" marginheight="0" marginwidth="0">Loading…</iframe>
+            <button type="button" class="close-btn">Close</button>
+        </div>
+        
+        <div class="popover-card" id="sponsorForm">
+            <h3>Sponsor</h3>
+            <iframe src="https://docs.google.com/forms/d/e/1FAIpQLScXuZrEfNzcChiMxLbIts06f73zUPoI_alR3wCkiyxO-vM5fQ/viewform?embedded=true" width="700" height="520" frameborder="0" marginheight="0" marginwidth="0">Loading…</iframe>
+            <button type="button" class="close-btn">Close</button>
+        </div>
+        
+        <div class="popover-card" id="fosterForm">
+            <h3>Foster</h3>
+            <iframe src="https://docs.google.com/forms/d/e/1FAIpQLScXuZrEfNzcChiMxLbIts06f73zUPoI_alR3wCkiyxO-vM5fQ/viewform?embedded=true" width="700" height="520" frameborder="0" marginheight="0" marginwidth="0">Loading…</iframe>
+            <button type="button" class="close-btn">Close</button>
+        </div>
+        
+        <!-- Overlay background -->
+        <div class="overlay" id="overlay"></div>
 
-    <script src="index.js"></script>  
+    <script src="index.js"></script> 
+    <script>
+        document.querySelectorAll('.popover-trigger').forEach(trigger => {
+            trigger.addEventListener('click', function(event) {
+                event.preventDefault();
+                const formId = this.getAttribute('data-form');
+                document.getElementById(formId).style.display = 'block';
+                document.getElementById('overlay').style.display = 'block';
+            });
+        });
+
+        document.querySelectorAll('.close-btn').forEach(button => {
+            button.addEventListener('click', function() {
+                this.closest('.popover-card').style.display = 'none';
+                document.getElementById('overlay').style.display = 'none';
+            });
+        });
+
+        // Hide popover when overlay is clicked
+        document.getElementById('overlay').addEventListener('click', function() {
+            document.querySelectorAll('.popover-card').forEach(card => {
+                card.style.display = 'none';
+            });
+            this.style.display = 'none';
+        });
+    </script>
 </body>
 </html>

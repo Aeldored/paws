@@ -90,14 +90,6 @@ body {
     font-family: 'Poppins', sans-serif;
 }
 
-.content main .adopt-animal {
-    display: grid; /* Use grid layout */
-    grid-template-columns: repeat(auto-fit, minmax(370px, 1fr)); /* Equal distribution of cards */
-    grid-gap: 16px; /* Space between cards */
-    margin-top: 24px;
-    justify-items: left; /* Center items in each grid cell */
-}
-
 .sidebar .side-menu li a{
     width: 100%;
     height: 100%;
@@ -112,18 +104,6 @@ body {
     transition: all 0.3s ease;
 }
 
-.content main .adopt-animal li{
-    padding: 16px;
-    background: rgba(var(--light), 0.7);
-    backdrop-filter: blur(10px);
-    border-radius: 20px;
-    display: flex;
-    align-items: center;
-    grid-gap: 16px;
-    cursor: pointer;
-    transition: all 0.3s ease; /* Add transition for smooth effect */
-}
-
 .content main .bottom-data > div {
     border-radius: 20px;
     background: var(--light);
@@ -131,15 +111,6 @@ body {
     overflow-x: auto;
     transition: all 0.3s ease; /* Add transition for smooth effect */
 }
-
-/* Add hover effect */
-.sidebar .side-menu li a:hover,
-.content main .adopt-animal li:hover, .about-section:hover, .adopt-section:hover,
-.content main .bottom-data > div:hover {
-    box-shadow: 0px 4px 15px rgba(59, 59, 59, 0.4); /* Shadow effect on hover */
-    transform: translateY(-2px); /* Optional: slight lift effect */
-}
-
 
 .bx{
     font-size: 1.7rem;
@@ -176,7 +147,7 @@ body{
     background: var(--light);
     width: 200px;
     height: 100%;
-    z-index: 2000;
+    z-index: 20;
     overflow-x: hidden;
     -ms-overflow-style: none;/* Hide scrollbar for IE, Edge */
     transition: all 0.3s ease;
@@ -208,7 +179,7 @@ body{
     display: flex;
     align-items: center;
     color: var(--primary);
-    z-index: 500;
+    z-index: 5;
 }
 
 .sidebar .logo .logo-name span{
@@ -327,7 +298,7 @@ body{
     position: sticky;
     top: 0;
     left: 0;
-    z-index: 1000;
+    z-index: 10;
     justify-content: space-between;
 }
 
@@ -369,45 +340,6 @@ body{
 .content nav .bx.bx-menu{
     cursor: pointer;
     color: var(--darkbg);
-}
-
-.content nav form{
-    max-width: 400px;
-    width: 100%;
-    margin-right: auto;
-}
-
-.content nav form .form-input{
-    display: flex;
-    align-items: center;
-    height: 36px;
-}
-
-.content nav form .form-input input{
-    flex-grow: 1;
-    padding: 0 16px;
-    height: 100%;
-    border: none;
-    background: var(--grey);
-    border-radius: 36px 0 0 36px;
-    outline: none;
-    width: 100%;
-    color: var(--darkbg);
-}
-
-.content nav form .form-input button{
-    width: 80px;
-    height: 100%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    background: var(--primary);
-    color: var(--light);
-    font-size: 18px;
-    border: none;
-    outline: none;
-    border-radius: 0 36px 36px 0;
-    cursor: pointer;
 }
 
 .content nav .notif{
@@ -506,6 +438,85 @@ body{
     width: 100%; /* Ensures responsiveness */
     object-fit: cover;
     aspect-ratio: 17 / 9; /* Sets the aspect ratio */
+}
+
+/* Hide all popover cards by default */
+.popover-card {
+    display: none;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: var(--grey);
+    padding: 20px;
+    width: auto;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    border-radius: 8px;
+    z-index: 100;
+}
+
+.popover-card h3 {
+    margin-top: 0;
+    color: var(--darkbg);
+}
+
+.popover-card form {
+    display: flex;
+    flex-direction: column;
+}
+
+.popover-card input, .popover-card button {
+    margin-bottom: 10px;
+}
+
+.popover-card .close-btn {
+    background-color: #f44336;
+    color: var(--darkbg);
+    border: none;
+    padding: 8px;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+/* Dim background when a popover card is open */
+.overlay {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    z-index: 50;
+}
+
+
+/* Add hover effect */
+.sidebar .side-menu li a:hover,
+.content main .adopt-animal li:hover, .about-section:hover, .adopt-section:hover,
+.content main .bottom-data > div:hover {
+    box-shadow: 0px 4px 15px rgba(59, 59, 59, 0.4); /* Shadow effect on hover */
+    transform: translateY(-2px); /* Optional: slight lift effect */
+}
+
+.content main .adopt-animal {
+    display: grid; /* Use grid layout */
+    grid-template-columns: repeat(auto-fit, minmax(370px, 1fr)); /* Equal distribution of cards */
+    grid-gap: 16px; /* Space between cards */
+    margin-top: 24px;
+    justify-items: left; /* Center items in each grid cell */
+}
+
+.content main .adopt-animal li{
+    padding: 16px;
+    background: rgba(var(--light), 0.7);
+    backdrop-filter: blur(10px);
+    border-radius: 20px;
+    display: flex;
+    align-items: center;
+    grid-gap: 16px;
+    cursor: pointer;
+    transition: all 0.3s ease; /* Add transition for smooth effect */
 }
 
 .adopt-section, .about-section {
@@ -629,52 +640,52 @@ body.dark .animal-card {
     box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.2);
 }
 
-.content main .bottom-data .orders{
+.content main .bottom-data .involved{
     flex-grow: 1;
     flex-basis: 750px;
     margin-bottom: 20px;
 }
 
-.content main .bottom-data .orders table{
+.content main .bottom-data .involved table{
     width: 100%;
     border-collapse: collapse;
 }
 
-.content main .bottom-data .orders table th{
+.content main .bottom-data .involved table th{
     padding-bottom: 12px;
     font-size: 13px;
     text-align: left;
     border-bottom: 1px solid var(--grey);
 }
 
-.content main .bottom-data .orders table td{
+.content main .bottom-data .involved table td{
     padding: 16px 0;
 }
 
-.content main .bottom-data .orders table tr td:first-child{
+.content main .bottom-data .involved table tr td:first-child{
     display: flex;
     align-items: center;
     grid-gap: 12px;
     padding-left: 6px;
 }
 
-.content main .bottom-data .orders table td img{
+.content main .bottom-data .involved table td img{
     width: 36px;
     height: 36px;
     border-radius: 50%;
     object-fit: contain;
 }
 
-.content main .bottom-data .orders table tbody tr{
+.content main .bottom-data .involved table tbody tr{
     cursor: pointer;
     transition: all 0.3s ease;
 }
 
-.content main .bottom-data .orders table tbody tr:hover{
+.content main .bottom-data .involved table tbody tr:hover{
     background: var(--grey);
 }
 
-.content main .bottom-data .orders table tr td .status{
+.content main .bottom-data .involved table tr td .status{
     font-size: 10px;
     padding: 6px 16px;
     color: var(--light);
@@ -682,29 +693,29 @@ body.dark .animal-card {
     font-weight: 700;
 }
 
-.content main .bottom-data .orders table tr td .status.completed{
+.content main .bottom-data .involved table tr td .status.completed{
     background: var(--success);
 }
 
-.content main .bottom-data .orders table tr td .status.process{
+.content main .bottom-data .involved table tr td .status.process{
     background: var(--primary);
 }
 
-.content main .bottom-data .orders table tr td .status.pending{
+.content main .bottom-data .involved table tr td .status.pending{
     background: var(--warning);
 }
 
-.content main .bottom-data .reminders{
+.content main .bottom-data .donate{
     flex-grow: 1;
     flex-basis: 300px;
     margin-bottom: 20px;
 }
 
-.content main .bottom-data .reminders .task-list{
+.content main .bottom-data .donate .task-list{
     width: 100%;
 }
 
-.content main .bottom-data .reminders .task-list li{
+.content main .bottom-data .donate .task-list li{
     width: 100%;
     margin-bottom: 16px;
     background: var(--grey);
@@ -715,28 +726,28 @@ body.dark .animal-card {
     justify-content: space-between;
 }
 
-.content main .bottom-data .reminders .task-list li .task-title{
+.content main .bottom-data .donate .task-list li .task-title{
     display: flex;
     align-items: center;
 }
 
-.content main .bottom-data .reminders .task-list li .task-title p{
+.content main .bottom-data .donate .task-list li .task-title p{
     margin-left: 6px;
 }
 
-.content main .bottom-data .reminders .task-list li .bx{
+.content main .bottom-data .donate .task-list li .bx{
   cursor: pointer;  
 }
 
-.content main .bottom-data .reminders .task-list li.completed{
+.content main .bottom-data .donate .task-list li.completed{
     border-left: 10px solid var(--success);
 }
 
-.content main .bottom-data .reminders .task-list li.not-completed{
+.content main .bottom-data .donate .task-list li.not-completed{
     border-left: 10px solid var(--danger);
 }
 
-.content main .bottom-data .reminders .task-list li:last-child{
+.content main .bottom-data .donate .task-list li:last-child{
    margin-bottom: 0;
 }
 
@@ -830,11 +841,11 @@ body.dark .animal-card {
         grid-template-columns: 1fr;
     }
 
-    .content main .bottom-data .orders table{
+    .content main .bottom-data .involved table{
         min-width: 340px;
     }
 
-    .content main .bottom-data .reminders .task-list{
+    .content main .bottom-data .donate .task-list{
         min-width: 340px;
     }
     .home-section .image-container h1 {
