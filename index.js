@@ -39,10 +39,6 @@ window.addEventListener('resize', () => {
     } else {
         sideBar.classList.remove('close');
     }
-    if (window.innerWidth > 576) {
-        searchBtnIcon.classList.replace('bx-x', 'bx-search');
-        searchForm.classList.remove('show');
-    }
 });
 
 function tdnn() {
@@ -64,20 +60,3 @@ function tdnn() {
       body.classList.add("dark"); // Dark mode
     }
   }
-
-const scrollContainer = document.querySelector('.content');
-scrollContainer.addEventListener('mouseover', () => {
-    scrollContainer.style.overflowY = 'scroll';
-});
-scrollContainer.addEventListener('mouseleave', () => {
-    scrollContainer.style.overflowY = 'hidden';
-});
-
-function adjustScroll(targetId) {
-    const targetElement = document.getElementById(targetId);
-    window.scrollTo({
-      top: targetElement.offsetTop - 10, // Adjust the value as needed
-      behavior: 'smooth'
-    });
-  }
-
