@@ -380,6 +380,7 @@ body{
    position: relative;
    display: inline-block;
 }
+
 .home-section .image-container  h1, .home-section .image-container .objective{
     position: absolute;
     top: 40%;
@@ -392,10 +393,12 @@ body{
     width: 100%; /* Ensures the text is centered */
     z-index: 1;
 }
+
 .home-section .image-container  h1{
     font-size: 3em; /* Adjust the size as needed */
     font-weight: 300;
 }
+
 .home-section .image-container .objective{
     top: 52%;
     width: 100%;
@@ -517,6 +520,9 @@ body{
     grid-gap: 16px;
     cursor: pointer;
     transition: all 0.3s ease; /* Add transition for smooth effect */
+}
+.home-section, .about-section, .donate-section,  .adopt-section, .involved-section, .contact-section{
+    scroll-margin-top: 60px;
 }
 
 .adopt-section, .about-section {
