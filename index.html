@@ -7,24 +7,31 @@
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
     <link rel="stylesheet" href="style.css">
     <link rel="icon" type="image/x-icon" href="images/animal-shelter.png">
-    <title>Animal</title>
+    <title>Furever Homes</title>
 </head>
 
 <body class="light">
     <!-- Sidebar -->
     <div class="sidebar">
         <ul class="side-menu">
-            <a href="#" class="logo">
-                <img src="images/pet-house.png">
-                <div class="logo-name"><span>PAWS</span>&#10084</div>
+            <a href="#" class="logo">    
+                <!-- Logo Image -->
+                <div class="logo-image">
+                  <img src="images/animal-shelter.png" alt="Furever Homes Logo">
+                </div>
+                <!-- Text Logo -->
+                <div class="text-logo">
+                  <h1>Furever Homes</h1>
+                  <p>Adopt, Donate, Save Lives</p>
+                </div>
             </a>
         </ul>
         <ul class="side-menu">
             <li class="active"><a href="#home-section"><i class='bx bxs-dashboard'></i>Home</a></li>
             <li><a href="#about-section"><i class='bx bx-store-alt'></i>About</a></li>
-            <li><a href="#donate-section"><i class='bx bx-coin-stack'></i>Donate</a></li>
             <li><a href="#adopt-section"><i class='bx bxs-dog'></i>Find a Pet</a></li>
             <li><a href="#involved-section"><i class='bx bx-group'></i>Get Involved</a></li>
+            <li><a href="#donate-section"><i class='bx bx-coin-stack'></i>Donate</a></li>
             <li><a href="#contact-section"><i class='bx bxs-contact'></i>Contact</a></li>  
         </ul>
         <ul class="side-menu">
@@ -95,8 +102,11 @@
 
             <section class="adopt-section" id="adopt-section">
                 <h2 class="section-title">Find your Fur-ever Friend Here</h2>
-                <div>
-                    <ul class="adopt-animal">
+                
+                <!-- Carousel for Cats -->
+                <div class="carousel-container" id="cats-carousel">
+                    <button class="carousel-control prev" data-carousel="cats">&lt;</button>
+                    <ul class="adopt-animal carousel-track" id="cats-track">
                         <li class="animal-card">
                             <div class="card-image">
                                 <img src="images/cat.jpg" alt="Cat" />
@@ -109,28 +119,82 @@
                                 <button class="adopt-button">Know More</button>
                             </div>
                         </li>
-                        <!-- Add more animal cards as needed -->
+                        <li class="animal-card">
+                            <div class="card-image">
+                                <img src="images/cat.jpg" alt="Cat" />
+                            </div>
+                            <div class="card-content">
+                                <h3 class="animal-name">Whiskers</h3>
+                                <p class="animal-breed">Breed: Persian</p>
+                                <p class="animal-age">Age: 2 years</p>
+                                <p class="animal-description">Whiskers is a friendly and playful cat looking for a loving home!</p>
+                                <button class="adopt-button">Know More</button>
+                            </div>
+                        </li>
+                        <li class="animal-card">
+                            <div class="card-image">
+                                <img src="images/cat.jpg" alt="Cat" />
+                            </div>
+                            <div class="card-content">
+                                <h3 class="animal-name">Whiskers</h3>
+                                <p class="animal-breed">Breed: Persian</p>
+                                <p class="animal-age">Age: 2 years</p>
+                                <p class="animal-description">Whiskers is a friendly and playful cat looking for a loving home!</p>
+                                <button class="adopt-button">Know More</button>
+                            </div>
+                        </li>
+                        <!-- Add more cat cards as needed -->
                     </ul>
+                    <button class="carousel-control next" data-carousel="cats">&gt;</button>
                 </div>
-
-                <div>
-                    <ul class="adopt-animal">
+                
+                <!-- Carousel for Dogs -->
+                <div class="carousel-container" id="dogs-carousel">
+                    <button class="carousel-control prev" data-carousel="dogs">&lt;</button>
+                    <ul class="adopt-animal carousel-track" id="dogs-track">
                         <li class="animal-card">
                             <div class="card-image">
-                                <img src="images/cat.jpg" alt="Cat" />
+                                <img src="images/dog.png" alt="Dog" />
                             </div>
                             <div class="card-content">
-                                <h3 class="animal-name">Whiskers</h3>
-                                <p class="animal-breed">Breed: Persian</p>
-                                <p class="animal-age">Age: 2 years</p>
-                                <p class="animal-description">Whiskers is a friendly and playful cat looking for a loving home!</p>
+                                <h3 class="animal-name">Buddy</h3>
+                                <p class="animal-breed">Breed: Labrador</p>
+                                <p class="animal-age">Age: 3 years</p>
+                                <p class="animal-description">Buddy is a loyal and energetic dog who loves to play fetch!</p>
                                 <button class="adopt-button">Know More</button>
                             </div>
                         </li>
-                        <!-- Add more animal cards as needed -->
+                        <li class="animal-card">
+                            <div class="card-image">
+                                <img src="images/dog.png" alt="Dog" />
+                            </div>
+                            <div class="card-content">
+                                <h3 class="animal-name">Buddy</h3>
+                                <p class="animal-breed">Breed: Labrador</p>
+                                <p class="animal-age">Age: 3 years</p>
+                                <p class="animal-description">Buddy is a loyal and energetic dog who loves to play fetch!</p>
+                                <button class="adopt-button">Know More</button>
+                            </div>
+                        </li>
+                        <li class="animal-card">
+                            <div class="card-image">
+                                <img src="images/dog.png" alt="Dog" />
+                            </div>
+                            <div class="card-content">
+                                <h3 class="animal-name">Buddy</h3>
+                                <p class="animal-breed">Breed: Labrador</p>
+                                <p class="animal-age">Age: 3 years</p>
+                                <p class="animal-description">Buddy is a loyal and energetic dog who loves to play fetch!</p>
+                                <button class="adopt-button">Know More</button>
+                            </div>
+                        </li>
+                        <!-- Add more dog cards as needed -->
                     </ul>
+                    <button class="carousel-control next" data-carousel="dogs">&gt;</button>
                 </div>
             </section>
+            
+
             <!-- End of main-content -->
 
             <div class="bottom-data" id="involved-section">
@@ -214,6 +278,34 @@
             });
             this.style.display = 'none';
         });
+
+        // Carousel
+        function initializeCarousel(carouselId) {
+            const track = document.querySelector(`#${carouselId}-track`);
+            const prevButton = document.querySelector(`.carousel-control.prev[data-carousel="${carouselId}"]`);
+            const nextButton = document.querySelector(`.carousel-control.next[data-carousel="${carouselId}"]`);
+            const cardWidth = document.querySelector('.animal-card').offsetWidth + 20; // Including margin
+            
+            let currentPosition = 0;
+
+            nextButton.addEventListener('click', () => {
+                if (currentPosition > -(track.scrollWidth - cardWidth)) {
+                    currentPosition -= cardWidth;
+                    track.style.transform = `translateX(${currentPosition}px)`;
+                }
+            });
+
+            prevButton.addEventListener('click', () => {
+                if (currentPosition < 0) {
+                    currentPosition += cardWidth;
+                    track.style.transform = `translateX(${currentPosition}px)`;
+                }
+            });
+        }
+
+        // Initialize both carousels
+        initializeCarousel('cats');
+        initializeCarousel('dogs');
     </script>
 </body>
 </html>

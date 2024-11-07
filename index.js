@@ -1,36 +1,46 @@
-const sideLinks = document.querySelectorAll('.sidebar .side-menu li a:not(.logout)');
+// Select .content div, all sections, and sidebar links
+const content = document.querySelector(".content");
+const sections = document.querySelectorAll("section");
+const sideLinks = document.querySelectorAll(".sidebar .side-menu li a");
 
-sideLinks.forEach(item => {
-    const li = item.parentElement;
-    item.addEventListener('click', () => {
-        sideLinks.forEach(i => {
-            i.parentElement.classList.remove('active');
-        })
-        li.classList.add('active');
-    })
-});
+function updateActiveLinkOnScroll() {
+    let currentSection = "";
+
+    // Iterate through each section to find the one in view within .content
+    sections.forEach(section => {
+        const sectionTop = section.offsetTop;
+        const sectionHeight = section.offsetHeight;
+        const contentScroll = content.scrollTop;
+
+        // Adjust section boundaries to detect which is in view
+        if (contentScroll >= sectionTop - sectionHeight / 3 && contentScroll < sectionTop + sectionHeight - sectionHeight / 3) {
+            currentSection = section.getAttribute("id");
+        }
+    });
+
+    // Update the active class on sidebar links based on currentSection
+    sideLinks.forEach(link => {
+        const li = link.parentElement;
+        li.classList.remove("active");
+
+        if (link.getAttribute("href").substring(1) === currentSection) {
+            li.classList.add("active");
+        }
+    });
+}
+
+// Attach scroll event listener to .content div
+content.addEventListener("scroll", updateActiveLinkOnScroll);
+
+// Initial check to set the active link when the page loads
+updateActiveLinkOnScroll();
+
 
 const menuBar = document.querySelector('.content nav .bx.bx-menu');
 const sideBar = document.querySelector('.sidebar');
 
 menuBar.addEventListener('click', () => {
     sideBar.classList.toggle('close');
-});
-
-const searchBtn = document.querySelector('.content nav form .form-input button');
-const searchBtnIcon = document.querySelector('.content nav form .form-input button .bx');
-const searchForm = document.querySelector('.content nav form');
-
-searchBtn.addEventListener('click', function (e) {
-    if (window.innerWidth < 576) {
-        e.preventDefault;
-        searchForm.classList.toggle('show');
-        if (searchForm.classList.contains('show')) {
-            searchBtnIcon.classList.replace('bx-search', 'bx-x');
-        } else {
-            searchBtnIcon.classList.replace('bx-x', 'bx-search');
-        }
-    }
 });
 
 window.addEventListener('resize', () => {

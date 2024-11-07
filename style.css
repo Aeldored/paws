@@ -90,20 +90,6 @@ body {
     font-family: 'Poppins', sans-serif;
 }
 
-.sidebar .side-menu li a{
-    width: 100%;
-    height: 100%;
-    background: var(--light);
-    display: flex;
-    align-items: center;
-    border-radius: 48px;
-    font-size: 16px;
-    color: var(--darkbg);
-    white-space: nowrap;
-    overflow-x: hidden;
-    transition: all 0.3s ease;
-}
-
 .content main .bottom-data > div {
     border-radius: 20px;
     background: var(--light);
@@ -169,29 +155,30 @@ body{
     height: 80%;
     width: inherit;
     padding-left: 8px;
-    padding-right: 10px;
+    padding-top: 4px;
 }
 
 .sidebar .logo{
-    font-size: 24px;
-    font-weight: 700;
-    height: 56px;
     display: flex;
-    align-items: center;
     color: var(--primary);
     z-index: 5;
+    overflow-x: hidden;
+    white-space: nowrap;
+    padding-top: 4px;
 }
 
-.sidebar .logo .logo-name span{
-    color: var(--darkbg);
-}
-
-.sidebar .logo{
-    min-width: 60px;
+.sidebar .side-menu li a{
+    width: 100%;
+    height: 100%;
+    background: var(--light);
     display: flex;
-    font-size: 2rem;
+    align-items: center;
+    border-radius: 48px;
+    font-size: 16px;
+    color: var(--darkbg);
     white-space: nowrap;
     overflow-x: hidden;
+    transition: all 0.3s ease;
 }
 
 .sidebar .side-menu{
@@ -335,6 +322,31 @@ body{
 
 .content nav a{
     color: var(--darkbg);
+}
+
+.logo-image img {
+    width: 50px; /* Adjust size based on your logo image */
+    height: auto;
+    margin-right: 10px;
+}
+
+/* Text logo styling */
+.text-logo {
+    color: #333;
+    padding-top: 3px;
+}
+
+.text-logo h1 {
+    font-size: 1.1em;
+    color: var(--primary); /* Deep orange color for main title */
+    margin: 0;
+}
+
+.text-logo p {
+    font-size: .6em;
+    color: var(--darkbg);
+    font-style: italic;
+    letter-spacing: 0.5px;
 }
 
 .content nav .bx.bx-menu{
@@ -503,8 +515,8 @@ body{
 }
 
 .content main .adopt-animal {
-    display: grid; /* Use grid layout */
-    grid-template-columns: repeat(auto-fit, minmax(370px, 1fr)); /* Equal distribution of cards */
+    /* display: grid; Use grid layout */
+    /* grid-template-columns: repeat(auto-fit, minmax(370px, 1fr)); Equal distribution of cards */
     grid-gap: 16px; /* Space between cards */
     margin-top: 24px;
     justify-items: left; /* Center items in each grid cell */
@@ -563,7 +575,6 @@ body.dark .animal-card {
 .card-image {
     display: flex; /* Enable Flexbox */
     /* Set desired aspect ratio, e.g., 16:9 */
-    aspect-ratio: 3/4; 
     justify-content: center; /* Center horizontally */
     align-items: center; /* Center vertically */
     position: relative;
@@ -578,6 +589,7 @@ body.dark .animal-card {
     max-width: 100%; /* Prevent overflow */
     display: block; /* Remove bottom space caused by inline-block images */
     object-fit: cover;
+    aspect-ratio: 3/4; 
 }
 
 .animal-card:hover {
@@ -622,11 +634,51 @@ body.dark .animal-card {
     color: var(--darkbg);
     font-weight: bold;
 }
-.content main .adopt-animal{
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(290px, 1fr));
-    grid-gap: 24px;
-    margin-top: 24px;
+
+/* Carousel */
+
+.carousel-container {
+    position: relative;
+    display: flex;
+    align-items: center;
+    overflow: hidden;
+    max-width: 100%;
+    margin: 0 auto;
+    padding: 12px 0px;
+}
+
+.carousel-track {
+    display: flex;
+    transition: transform 0.5s ease;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.animal-card {
+    flex: 0 0 80%; /* Adjust based on how many items you want visible */
+    margin: 0 10px;
+}
+
+.carousel-control {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background-color: rgba(0, 0, 0, 0.5);
+    color: #fff;
+    border: none;
+    padding: 10px;
+    cursor: pointer;
+    font-size: 20px;
+    z-index: 10;
+}
+
+.carousel-control.prev {
+    left: 10px;
+}
+
+.carousel-control.next {
+    right: 10px;
 }
 
 .content main .bottom-data{
@@ -843,9 +895,9 @@ body.dark .animal-card {
         display: none;
     }
 
-    .content main .adopt-animal {
+    /* .content main .adopt-animal {
         grid-template-columns: 1fr;
-    }
+    } */
 
     .content main .bottom-data .involved table{
         min-width: 340px;
@@ -853,16 +905,6 @@ body.dark .animal-card {
 
     .content main .bottom-data .donate .task-list{
         min-width: 340px;
-    }
-    .home-section .image-container h1 {
-        font-size: 1em; /* Further reduce font size */
-        min-width: 340px;
-        top: 30%;
-    }
-
-    .home-section .image-container .objective .obj-section li {
-        font-size: 12px;
-        padding: 2px 12px; /* Adjust padding */
     }
     .home-section .image-container .objective .obj-section{  
         grid-gap: 4px;
@@ -874,4 +916,13 @@ body.dark .animal-card {
         top: 60%;
         overflow: auto;
     }    
+    .home-section .image-container img{
+        aspect-ratio: 3 / 4; /* Sets the aspect ratio */
+    }
+    .popover-card{
+        height: inherit;
+    }
+    .popover-card iframe{
+        width: auto;
+    }
 }
