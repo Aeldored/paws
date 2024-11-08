@@ -537,7 +537,7 @@ body{
     scroll-margin-top: 60px;
 }
 
-.adopt-section, .about-section {
+.adopt-section, .about-section, .contact-section {
     /* Background color for the section */
     background: var(--light); 
     padding: 24px; /* Space around the content */
@@ -619,7 +619,7 @@ body.dark .animal-card {
     margin: 8px 0 16px;
 }
 
-.adopt-button {
+.adopt-button, #adopt-button {
     background: var(--primary); /* Define your primary color */
     color: #fff;
     border: none;
@@ -629,7 +629,7 @@ body.dark .animal-card {
     transition: all 0.3s ease;
 }
 
-.adopt-button:hover {
+.adopt-button:hover, #adopt-button:hover {
     background: var(--light-danger); /* Define a darker shade for hover effect */
     color: var(--darkbg);
     font-weight: bold;
@@ -670,7 +670,7 @@ body.dark .animal-card {
     padding: 10px;
     cursor: pointer;
     font-size: 20px;
-    z-index: 10;
+    z-index: 9;
 }
 
 .carousel-control.prev {

@@ -13,7 +13,7 @@ function updateActiveLinkOnScroll() {
         const contentScroll = content.scrollTop;
 
         // Adjust section boundaries to detect which is in view
-        if (contentScroll >= sectionTop - sectionHeight / 3 && contentScroll < sectionTop + sectionHeight - sectionHeight / 3) {
+        if (contentScroll >= sectionTop - sectionHeight / 6 && contentScroll < sectionTop + sectionHeight - sectionHeight / 6) {
             currentSection = section.getAttribute("id");
         }
     });
