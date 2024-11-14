@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
     <link rel="stylesheet" href="/assets/css/styles.css">
-    <link rel="icon" type="image/x-icon" href="/assets/images/animal-shelter.png">
+    <link rel="icon" type="image/x-icon" href="assets/images/animal-shelter.png">
     <title>Furever Homes</title>
 </head>
 
@@ -17,7 +17,7 @@
             <a href="#" class="logo">    
                 <!-- Logo Image -->
                 <div class="logo-image">
-                  <img src="assets/images/animal-shelter.png" alt="Furever Homes Logo">
+                  <img src="/assets/images/animal-shelter.png" alt="Furever Homes Logo">
                 </div>
                 <!-- Text Logo -->
                 <div class="text-logo">
@@ -30,14 +30,15 @@
             <li class="active"><a href="#home-section"><i class='bx bxs-dashboard'></i>Home</a></li>
             <li><a href="#about-section"><i class='bx bx-store-alt'></i>About</a></li>
             <li><a href="#adopt-section"><i class='bx bxs-dog'></i>Find a Pet</a></li>
-            <li><a href="#rehome-section"><i class='bx bx-group'></i>Rehome a Pet</a></li>
+            <li><a href="#rehome-section"><i class='bx bx-group'></i>Get Involved</a></li>
             <li><a href="#donate-section"><i class='bx bx-coin-stack'></i>Donate</a></li>
             <li><a href="#contact-section"><i class='bx bxs-contact'></i>Contact</a></li>  
         </ul>
         <ul class="side-menu">
-            <li class="logout-item">
+            <li>
                 <a href="#" class="logout">
                     <i class='bx bx-log-out-circle'></i>
+                    Logout
                 </a>
             </li>
         </ul>
@@ -55,6 +56,13 @@
                 <div onclick="tdnn()" class="tdnn day">
                 <div class="moon sun"></div>
                 </div>
+                <a href="#" class="notif">
+                    <i class='bx bx-bell'></i>
+                    <span class="count">12</span>
+                </a>
+                <a href="#" class="profile">
+                    <img src="assets/images/cat.jpg">
+                </a>
             </div>
         </nav>
         <!-- End of Navbar -->
@@ -74,91 +82,91 @@
                 </div>
             </section>
 
-         <!-- About Us Section -->
-<section class="about-section" id="about-section">
-    <h2 class="section-title">About Us</h2>
-    <p class ="about-text">
-        <strong>Paws</strong> was founded in 2024 by a passionate group of animal advocates determined to improve the lives of stray and abandoned animals in the Philippines. We are a non-profit, non-government organization that operates independently, relying entirely on the generosity of private donations to fund our operations.
-    </p>
-
-    <div class="about-content">
-        <div class="about-box">
-            <h3>Vision</h3>
-            <p>
-                Our vision is to create a compassionate society in the Philippines where every cat and dog has a loving and permanent home.
-            </p>
-        </div>
-        
-        <div class="about-box">
-            <h3>Mission</h3>
-            <p>
-                Our mission is to enhance animal welfare through public education, raising awareness, providing affordable veterinary care and sterilization services, and rehabilitating and rehoming cats and dogs in need.
-            </p>
-        </div>
-        
-        <div class="about-box">
-            <h3>Goals</h3>
-            <ul>
-                <li>Promote Trap/Neuter/Return (TNR) programs in communities, local areas, and commercial spaces.</li>
-                <li>Find loving, responsible homes through our adoption program.</li>
-                <li>Raise awareness about animal welfare and the importance of addressing the stray animal population.</li>
-                <li>Advocate for no-kill shelters and pounds to ensure the safe treatment of all animals.</li>
-            </ul>
-        </div>
-    </div>
-
-    <!-- View More Button -->
-    <button class="view-more-btn" onclick="showModal()">View More <span class="bx bx-chevron-right"></span></button>
-</section>
-
-<!-- Modal Overlay -->
-<div class="modal-overlay" id="modal-overlay"></div>
-
-<!-- Modal Content -->
-<div class="modal" id="modal">
-    <div class="modal-content">
-        <h2>About Us</h2>
-        <p>
-            <strong>Paws</strong> is committed to improving the lives of stray animals across the Philippines. Our volunteer-run organization operates solely on donations, and we are dedicated to providing shelter, medical care, and education on responsible pet ownership.
-        </p>
-        <p>
-            We are passionate about spaying and neutering to prevent the overpopulation of animals, and we are committed to raising awareness about the importance of adopting over purchasing pets.
-        </p>
-        <p>
-            In addition to our adoption programs, we are expanding our services to offer mobile spay/neuter clinics in remote communities to ensure that every pet has access to basic health care.
-        </p>
-
-        <!-- Vision, Mission, Goals -->
-        <div class="about-box">
-            <h3>Vision</h3>
-            <p>
-                Our vision is to create a compassionate society in the Philippines where every cat and dog has a loving and permanent home.
-            </p>
-        </div>
-        
-        <div class="about-box">
-            <h3>Mission</h3>
-            <p>
-                Our mission is to enhance animal welfare through public education, raising awareness, providing affordable veterinary care and sterilization services, and rehabilitating and rehoming cats and dogs in need.
-            </p>
-        </div>
-        
-        <div class="about-box">
-            <h3>Goals</h3>
-            <ul>
-                <li>Promote Trap/Neuter/Return (TNR) programs in communities, local areas, and commercial spaces.</li>
-                <li>Find loving, responsible homes through our adoption program.</li>
-                <li>Raise awareness about animal welfare and the importance of addressing the stray animal population.</li>
-                <li>Advocate for no-kill shelters and pounds to ensure the safe treatment of all animals.</li>
-            </ul>
-        </div>
-
-        <!-- Close Button -->
-        <button class="close1-btn" onclick="closeModal()">Close</button>
-
-        <button class="close2-btn" onclick="closeModal()">&times;</button>
-    </div>
-</div>
+            <!-- About Us Section -->
+            <section class="about-section" id="about-section">
+                <h2 class="section-title">About Us</h2>
+                <p class ="about-text">
+                    <strong>Paws</strong> was founded in 2024 by a passionate group of animal advocates determined to improve the lives of stray and abandoned animals in the Philippines. We are a non-profit, non-government organization that operates independently, relying entirely on the generosity of private donations to fund our operations.
+                </p>
+            
+                <div class="about-content">
+                    <div class="about-box">
+                        <h3>Vision</h3>
+                        <p>
+                            Our vision is to create a compassionate society in the Philippines where every cat and dog has a loving and permanent home.
+                        </p>
+                    </div>
+                    
+                    <div class="about-box">
+                        <h3>Mission</h3>
+                        <p>
+                            Our mission is to enhance animal welfare through public education, raising awareness, providing affordable veterinary care and sterilization services, and rehabilitating and rehoming cats and dogs in need.
+                        </p>
+                    </div>
+                    
+                    <div class="about-box">
+                        <h3>Goals</h3>
+                        <ul>
+                            <li>Promote Trap/Neuter/Return (TNR) programs in communities, local areas, and commercial spaces.</li>
+                            <li>Find loving, responsible homes through our adoption program.</li>
+                            <li>Raise awareness about animal welfare and the importance of addressing the stray animal population.</li>
+                            <li>Advocate for no-kill shelters and pounds to ensure the safe treatment of all animals.</li>
+                        </ul>
+                    </div>
+                </div>
+            
+                <!-- View More Button -->
+                <button class="view-more-btn" onclick="showModal()">View More <span class="bx bx-chevron-right"></span></button>
+            </section>
+            
+            <!-- Modal Overlay -->
+            <div class="modal-overlay" id="modal-overlay"></div>
+            
+            <!-- Modal Content -->
+            <div class="modal" id="modal">
+                <div class="modal-content">
+                    <h2>About Us</h2>
+                    <p>
+                        <strong>Paws</strong> is committed to improving the lives of stray animals across the Philippines. Our volunteer-run organization operates solely on donations, and we are dedicated to providing shelter, medical care, and education on responsible pet ownership.
+                    </p>
+                    <p>
+                        We are passionate about spaying and neutering to prevent the overpopulation of animals, and we are committed to raising awareness about the importance of adopting over purchasing pets.
+                    </p>
+                    <p>
+                        In addition to our adoption programs, we are expanding our services to offer mobile spay/neuter clinics in remote communities to ensure that every pet has access to basic health care.
+                    </p>
+            
+                    <!-- Vision, Mission, Goals -->
+                    <div class="about-box">
+                        <h3>Vision</h3>
+                        <p>
+                            Our vision is to create a compassionate society in the Philippines where every cat and dog has a loving and permanent home.
+                        </p>
+                    </div>
+                    
+                    <div class="about-box">
+                        <h3>Mission</h3>
+                        <p>
+                            Our mission is to enhance animal welfare through public education, raising awareness, providing affordable veterinary care and sterilization services, and rehabilitating and rehoming cats and dogs in need.
+                        </p>
+                    </div>
+                    
+                    <div class="about-box">
+                        <h3>Goals</h3>
+                        <ul>
+                            <li>Promote Trap/Neuter/Return (TNR) programs in communities, local areas, and commercial spaces.</li>
+                            <li>Find loving, responsible homes through our adoption program.</li>
+                            <li>Raise awareness about animal welfare and the importance of addressing the stray animal population.</li>
+                            <li>Advocate for no-kill shelters and pounds to ensure the safe treatment of all animals.</li>
+                        </ul>
+                    </div>
+            
+                    <!-- Close Button -->
+                    <button class="close1-btn" onclick="closeModal()">Close</button>
+            
+                    <button class="close2-btn" onclick="closeModal()">&times;</button>
+                </div>
+            </div>
 
             <section class="adopt-section" id="adopt-section">
                 <h2 class="section-title">Find your Fur-ever Friend Here</h2>
@@ -176,8 +184,11 @@
                                 <p class="animal-breed">Breed: Persian</p>
                                 <p class="animal-age">Age: 2 years</p>
                                 <p class="animal-description">Whiskers is a friendly and playful cat looking for a loving home!</p>
-                                <button class="adopt-button">Adopt Me!</button>
+                                <button class="adopt-button">Edit</button>
                             </div>
+                        </li>
+                        <li class="animal-card add-new-card">
+                            <div class="add-icon">+</div>
                         </li>
                         <!-- Add more cat cards as needed -->
                     </ul>
@@ -190,18 +201,20 @@
                     <ul class="adopt-animal carousel-track" id="dogs-track">
                         <li class="animal-card">
                             <div class="card-image">
-                                <img src="/assets/images/dog.png" alt="Dog" />
+                                <img src="assets/images/dog.png" alt="Dog" />
                             </div>
                             <div class="card-content">
                                 <h3 class="animal-name">Buddy</h3>
                                 <p class="animal-breed">Breed: Labrador</p>
                                 <p class="animal-age">Age: 3 years</p>
                                 <p class="animal-description">Buddy is a loyal and energetic dog who loves to play fetch!</p>
-                                <button class="adopt-button">Adopt Me!</button>
+                                <button class="adopt-button">Edit</button>
                             </div>
                         </li>
 
-            
+                        <li class="animal-card add-new-card">
+                            <div class="add-icon">+</div>
+                        </li>
                         <!-- Add more dog cards as needed -->
                     </ul>
                     <button class="carousel-control next" data-carousel="dogs">&gt;</button>
@@ -221,14 +234,14 @@
                         </div>
                     </section>
                 </div>
-            
+        
                 <!-- donate -->
                 <div class="donate">
                     <section class="donate-section" id="donate-section">
                         <ul class="adopt-animal">
                             <li class="donate-card">
                                 <div class="donate-box">
-                                    <img src="/assets/images/paypal.png" alt="PayPal QR Code" class="donate-image">
+                                    <img src="assets/images/paypal.png" alt="PayPal QR Code" class="donate-image">
                                     <h3 class="donate-text">Donate via PayPal</h3>
                                     <p class="donate-text">Use the QR code or send donations to our PayPal email: <strong>donate@paws.org</strong></p>
                                     <a href="https://www.paypal.com/donate/example" target="_blank" class="donate-button">Donate on PayPal</a>
@@ -269,7 +282,7 @@
 
     </div>
 
-   <!-- Popover for Donate -->
+       <!-- Popover for Donate -->
 <div class="popover-card" id="donateForm">
     <h3>Donate</h3>
     <form id="donateFormContent" onsubmit="handleFormSubmit(event, 'donateTracker')">
@@ -367,8 +380,6 @@
     <button class="close-btn">Close</button>
     <button class="close-btn-form">&times;</button>
 </div>
-
-
     
     <!-- Overlay background -->
     <div class="overlay" id="overlay"></div>
