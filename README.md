@@ -25,4 +25,4 @@ A pet adoption website focused on helping stray and abandoned animals in the Phi
 
 ---
 
-**Furever Homes - Paws for Change, Forever in Your Heart.**
+**Furever Homes - Adopt, Donate and Save Lives**
