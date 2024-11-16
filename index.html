@@ -5,8 +5,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
-    <link rel="stylesheet" href="/assets/css/styles.css">
-    <link rel="icon" type="image/x-icon" href="/assets/images/animal-shelter.png">
+    <link rel="stylesheet" href="assets/css/styles.css">
+    <link rel="icon" type="image/x-icon" href="assets/images/animal-shelter.png">
     <title>Furever Homes</title>
 </head>
 
@@ -70,7 +70,7 @@
                             <li><a href="#" class="popover-trigger" data-form="fosterForm">Foster</a></li>  
                         </ul>
                     </div>
-                    <img src="/assets/images/home.png" alt="cat and dogs in photo">
+                    <img src="assets/images/home.png" alt="cat and dogs in photo">
                 </div>
             </section>
 
@@ -169,7 +169,7 @@
                     <ul class="adopt-animal carousel-track" id="cats-track">
                         <li class="animal-card">
                             <div class="card-image">
-                                <img src="/assets/images/cat.jpg" alt="Cat" />
+                                <img src="assets/images/cat.jpg" alt="Cat" />
                             </div>
                             <div class="card-content">
                                 <h3 class="animal-name">Whiskers</h3>
@@ -190,7 +190,7 @@
                     <ul class="adopt-animal carousel-track" id="dogs-track">
                         <li class="animal-card">
                             <div class="card-image">
-                                <img src="/assets/images/dog.png" alt="Dog" />
+                                <img src="assets/images/dog.png" alt="Dog" />
                             </div>
                             <div class="card-content">
                                 <h3 class="animal-name">Buddy</h3>
@@ -228,7 +228,7 @@
                         <ul class="adopt-animal">
                             <li class="donate-card">
                                 <div class="donate-box">
-                                    <img src="/assets/images/paypal.png" alt="PayPal QR Code" class="donate-image">
+                                    <img src="assets/images/paypal.png" alt="PayPal QR Code" class="donate-image">
                                     <h3 class="donate-text">Donate via PayPal</h3>
                                     <p class="donate-text">Use the QR code or send donations to our PayPal email: <strong>donate@paws.org</strong></p>
                                     <a href="https://www.paypal.com/donate/example" target="_blank" class="donate-button">Donate on PayPal</a>
@@ -270,9 +270,9 @@
     </div>
 
    <!-- Popover for Donate -->
-<div class="popover-card" id="donateForm">
+ <div class="popover-card" id="donateForm">
     <h3>Donate</h3>
-    <form id="donateFormContent" onsubmit="handleFormSubmit(event, 'donateTracker')">
+    <form id="donateFormContent" action="php/donateform.php" method="post">
         <label for="donorName">Name:</label>
         <input type="text" id="donorName" name="donorName" required>
 
@@ -282,26 +282,11 @@
         <label for="contactEmail">Email:</label>
         <input type="email" id="contactEmail" name="contactEmail" required>
 
-        <label for="donationMethod">Donation Method:</label>
-        <select id="donationMethod" name="donationMethod" required>
-            <option value="creditCard">Credit Card</option>
-            <option value="bankTransfer">Bank Transfer</option>
-            <option value="paypal">PayPal</option>
-            <option value="other">Other</option>
-        </select>
-
-        <label for="isAnonymous">Would you like to remain anonymous?</label>
-        <input type="checkbox" id="isAnonymous" name="isAnonymous">
-
-        <label for="donationInHonor">Are you donating in honor of someone?</label>
-        <input type="text" id="donationInHonor" name="donationInHonor" placeholder="Name of honoree (Optional)">
-
         <button type="submit">Submit</button>
     </form>
     <button class="close-btn">Close</button>
     <button class="close-btn-form">&times;</button>
 </div>
-
 
 <!-- Popover for Sponsor -->
 <div class="popover-card" id="sponsorForm">
@@ -330,7 +315,6 @@
     <button class="close-btn">Close</button>
     <button class="close-btn-form">&times;</button>
 </div>
-
 
 <!-- Popover for Foster -->
 <div class="popover-card" id="fosterForm">
@@ -367,13 +351,11 @@
     <button class="close-btn">Close</button>
     <button class="close-btn-form">&times;</button>
 </div>
-
-
     
     <!-- Overlay background -->
     <div class="overlay" id="overlay"></div>
 
-    <script src="/assets/js/main.js"></script> 
+    <script src="assets/js/main.js"></script> 
     
 </body>
 </html>

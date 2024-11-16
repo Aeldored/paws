@@ -506,6 +506,16 @@ body{
     transition: border-color 0.3s ease;
 }
 
+.popover-card button {
+    padding: 10px;
+    font-size: 1em;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    outline: none;
+    transition: border-color 0.3s ease;
+    background-color:#388E3C;
+}
+
 .popover-card input:focus, .popover-card button:hover {
     border-color: #388E3C; /* Green border on focus/hover */
 }
@@ -1198,7 +1208,7 @@ body.dark .donate-card {
     display: flex;
     justify-content: center;
     align-items: flex-end; /* Align content to the bottom */
-    background-image: url('/assets/images/adoption.jpg'); /* Set background image */
+    background-image: url('../images/adoption.jpg'); /* Set background image */
     background-size: cover; /* Cover the entire section */
     background-position: center; /* Center the image */
     overflow: hidden;
@@ -1264,14 +1274,14 @@ body.dark .donate-card {
         font-size: 18px;
         padding: 4px 16px; /* Adjust padding */
     }
+
+    .tdnn {
+        font-size: 2px; /* Adjust the font size for mobile */
+    }
 }
 
 
 @media screen and (max-width: 576px) {
-
-    .tdnn {
-        height: 24px;
-    }
 
     .sidebar{
         width: 0px;
