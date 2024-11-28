@@ -24,6 +24,10 @@
             </ul>
             <ul class="side-menu">
                 <li class="active">
+                    <a href="#analytics-section">
+                        <i class='bx bxs-bar-chart-alt-2'></i>Analytics </a>
+                </li>
+                <li>
                     <a href="#home-section">
                         <i class='bx bxs-dashboard'></i>Home </a>
                 </li>
@@ -42,10 +46,6 @@
                 <li>
                     <a href="#donate-section">
                         <i class='bx bx-coin-stack'></i>Donate </a>
-                </li>
-                <li>
-                    <a href="#analytics-section">
-                        <i class='bx bxs-bar-chart-alt-2'></i>Analytics </a>
                 </li>
                 <li>
                     <a href="#contact-section">
@@ -79,6 +79,41 @@
                 </div>
             </nav>
             <main>
+                <section class="analytics-section" id="analytics-section">
+                    <h2 class="section-title">Analytics</h2>
+                    <div class="analytics-grid">
+                        <div class="analytics-card main-chart">
+                            <div class="analytics-box">
+                                <h3 class="analytics-title">Pet Status</h3>
+                                <canvas id="mainPetsChart"></canvas>
+                            </div>
+                        </div>
+                        <div class="analytics-card">
+                            <div class="analytics-box">
+                                <h3 class="analytics-title">Available Pets</h3>
+                                <canvas id="adoptedPetsChart"></canvas>
+                            </div>
+                        </div>
+                        <div class="analytics-card">
+                            <div class="analytics-box">
+                                <h3 class="analytics-title">Inquiries of Rehoming by Type</h3>
+                                <canvas id="rehomeInquiriesChart"></canvas>
+                            </div>
+                        </div>
+                        <div class="analytics-card">
+                            <div class="analytics-box">
+                                <h3 class="analytics-title">Total Amounts</h3>
+                                <canvas id="donationsChart"></canvas>
+                            </div>
+                        </div>
+                        <div class="analytics-card">
+                            <div class="analytics-box">
+                                <h3 class="analytics-title">Number of Applications Submitted</h3>
+                                <canvas id="donorsSponsorsFostersChart"></canvas>
+                            </div>
+                        </div>
+                    </div>
+                </section>
                 <section class="home-section" id="home-section">
                     <div class="image-container">
                         <h1>Help care for the animals</h1>
@@ -426,41 +461,6 @@
                         </section>
                     </div>
                 </div>
-                <section class="analytics-section" id="analytics-section">
-                    <h2 class="section-title">Analytics</h2>
-                    <div class="analytics-grid">
-                        <div class="analytics-card main-chart">
-                            <div class="analytics-box">
-                                <h3 class="analytics-title">Pet Status</h3>
-                                <canvas id="mainPetsChart"></canvas>
-                            </div>
-                        </div>
-                        <div class="analytics-card">
-                            <div class="analytics-box">
-                                <h3 class="analytics-title">Available Pets</h3>
-                                <canvas id="adoptedPetsChart"></canvas>
-                            </div>
-                        </div>
-                        <div class="analytics-card">
-                            <div class="analytics-box">
-                                <h3 class="analytics-title">Inquiries of Rehoming by Type</h3>
-                                <canvas id="rehomeInquiriesChart"></canvas>
-                            </div>
-                        </div>
-                        <div class="analytics-card">
-                            <div class="analytics-box">
-                                <h3 class="analytics-title">Total Amounts</h3>
-                                <canvas id="donationsChart"></canvas>
-                            </div>
-                        </div>
-                        <div class="analytics-card">
-                            <div class="analytics-box">
-                                <h3 class="analytics-title">Number of Applications Submitted</h3>
-                                <canvas id="donorsSponsorsFostersChart"></canvas>
-                            </div>
-                        </div>
-                    </div>
-                </section>
                 <section class="contact-section" id="contact-section">
                     <h2 class="contact-text1">Contact Us</h2>
                     <h3 class="contact-text2">We love hearing from fellow animal lovers and animal welfare supporters. <br> Please see the appropriate contact channels for your concerns. </h3>
