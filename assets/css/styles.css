@@ -1340,6 +1340,12 @@ body.dark .animal-card {
 	backdrop-filter: blur(5px);
 }
 
+#petImagePreview, #imagePreviewLabel {
+    width: 150px; 
+    height: auto; 
+    margin-top: 10px;
+}
+
 .content main .bottom-data {
 	display: flex;
 	flex-wrap: wrap;

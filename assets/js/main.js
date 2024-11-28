@@ -1405,6 +1405,7 @@ if (window.location.pathname.includes('admin.html')) {
             }
             petIdInput.value = petId;
             document.getElementById('add-pet-modal').style.display = 'block';
+            document.getElementById('pet-overlay').style.display = 'block';
          })
          .catch(error => {
             console.error('Error fetching pet details:', error);
