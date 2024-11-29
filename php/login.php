@@ -4,7 +4,7 @@ session_start();
 if (isset($_GET['logout'])) {
     session_unset(); 
     session_destroy();
-    header("Location: http://localhost/fureverhomes/login.html");
+    header("Location: http://localhost/FurHomes/login.html");
     exit();
 }
 
@@ -33,7 +33,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $_SESSION['logged_in'] = true;
         $_SESSION['username'] = $input_username; 
 
-        header("Location: http://localhost/fureverhomes/admin.html");
+        header("Location: http://localhost/FurHomes/admin.html");
         exit();
     } else {
    
