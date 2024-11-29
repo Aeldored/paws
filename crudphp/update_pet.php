@@ -12,13 +12,14 @@ if ($conn->connect_error)
 }
 if ($_SERVER['REQUEST_METHOD'] === 'POST')
 {
-    $petId = $_POST['petId'];
+    $petId = $_POST['petId']; 
     $petCategory = $_POST['petCategory'];
     $petType = $_POST['petType'];
     $petName = $_POST['petName'];
     $petBreed = $_POST['petBreed'];
     $petAge = $_POST['petAge'];
     $petDescription = $_POST['petDescription'];
+
     if (isset($_FILES['petImage']) && $_FILES['petImage']['error'] === UPLOAD_ERR_OK)
     {
         $targetDir = $_SERVER['DOCUMENT_ROOT'] . "/fureverhomes/assets/uploads/";
@@ -37,8 +38,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST')
     {
         $imageUpdate = "";
     }
+
     $stmt = $conn->prepare("UPDATE pets SET category = ?, type = ?, name = ?, breed = ?, age = ?, description = ? $imageUpdate WHERE id = ?");
     $stmt->bind_param("ssssssi", $petCategory, $petType, $petName, $petBreed, $petAge, $petDescription, $petId);
+
     if ($stmt->execute())
     {
         echo json_encode(['status' => 'success', 'message' => 'Pet updated successfully!']);

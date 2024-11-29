@@ -1063,6 +1063,18 @@ function deleteFosterRow(button) {
 }
 
 function openModal(petType) {
+   const form = document.getElementById('addPetForm');
+   form.reset();
+   document.getElementById('petImagePreview').style.display = 'none';
+   document.querySelector('#addPetForm button[type="submit"]').innerText = 'Add Pet';
+   form.action = 'php/add_pet.php';
+   document.getElementById('petImage').setAttribute('required', 'true');
+   
+   const petIdInput = document.querySelector('#addPetForm input[name="petId"]');
+   if (petIdInput) {
+      petIdInput.remove();
+   }
+
    document.getElementById('petType').value = petType;
    const activeTab = document.querySelector('.tab-button.active');
    const category = activeTab ? (activeTab.classList.contains('adoptable') ? 'adoptable' : 'fosterable') : 'adoptable';
@@ -1077,6 +1089,7 @@ function openModal(petType) {
       document.getElementById('petAge').setAttribute('placeholder', 'Age in years');
    }
 }
+
 
 function closeModal() {
    document.getElementById('add-pet-modal').style.display = 'none';
@@ -1384,6 +1397,7 @@ if (window.location.pathname.includes('admin.html')) {
             if (data.status === 'error') {
                throw new Error(data.message);
             }
+   
             document.getElementById('petCategory').value = data.category;
             document.getElementById('petType').value = data.type;
             document.getElementById('petName').value = data.name;
@@ -1393,9 +1407,20 @@ if (window.location.pathname.includes('admin.html')) {
             const imagePreview = document.getElementById('petImagePreview');
             imagePreview.src = `assets/uploads/${data.image}`;
             imagePreview.style.display = 'block';
-            document.querySelector('#addPetForm button[type="submit"]').innerText = 'Save Pet';
+
+            const activeTab = document.querySelector('.tab-button.active');
+            const category = activeTab ? (activeTab.classList.contains('adoptable') ? 'adoptable' : 'fosterable') : 'adoptable';
+            const petCategorySelect = document.getElementById('petCategory');
+            petCategorySelect.value = category;
+            document.getElementById('petCategoryHidden').value = category;
+            
             const form = document.getElementById('addPetForm');
-            form.action = 'crudphp/update_pet.php';
+            document.querySelector('#addPetForm button[type="submit"]').innerText = 'Save Pet';
+            form.action = 'crudphp/update_pet.php'; 
+            document.getElementById('petImage').removeAttribute('required');
+
+            console.log("Form action set to: " + form.action); 
+   
             let petIdInput = document.querySelector('#addPetForm input[name="petId"]');
             if (!petIdInput) {
                petIdInput = document.createElement('input');
@@ -1404,63 +1429,42 @@ if (window.location.pathname.includes('admin.html')) {
                form.appendChild(petIdInput);
             }
             petIdInput.value = petId;
+
             document.getElementById('add-pet-modal').style.display = 'block';
             document.getElementById('pet-overlay').style.display = 'block';
          })
          .catch(error => {
             console.error('Error fetching pet details:', error);
             alert('Failed to load pet details.');
-         });
+         });   
    }
 
-   function openAddModal() {
-      document.getElementById('addPetForm').reset();
-      document.getElementById('petImagePreview').style.display = 'none';
-      document.querySelector('#addPetForm button[type="submit"]').innerText = 'Add Pet';
-      document.getElementById('addPetForm').action = 'php/add_pet.php';
-      const petIdInput = document.querySelector('#addPetForm input[name="petId"]');
-      if (petIdInput) {
-         petIdInput.remove();
-      }
-      document.getElementById('add-pet-modal').style.display = 'block';
-   }
-
-   document.addEventListener("DOMContentLoaded", function () {
-      if (document.getElementById('addPetForm')) {
-         document.getElementById('petCategory').addEventListener('change', function () {
-            const category = this.value;
-            const petAgeInput = document.getElementById('petAge');
-            if (category === 'fosterable') {
-               petAgeInput.setAttribute('placeholder', 'Age in months');
-            } else {
-               petAgeInput.setAttribute('placeholder', 'Age in years');
-            }
-         });
-         document.getElementById("addPetForm").addEventListener("submit", function (event) {
-            event.preventDefault();
-            const formData = new FormData(this);
-            const petCategory = document.getElementById('petCategory').value;
-            fetch("php/add_pet.php", {
-                  method: "POST",
-                  body: formData
-               })
-               .then(response => response.json())
-               .then(data => {
-                  if (data.status === "success") {
-                     alert(data.message);
-                     closeModal();
-                     loadPets(petCategory);
-                  } else {
-                     alert("Error: " + data.message);
-                  }
-               })
-               .catch(error => {
-                  console.error("Error:", error);
-                  alert("Something went wrong. Please try again.");
-               });
-         });
-      }
-   });
+   document.getElementById("addPetForm").addEventListener("submit", function (event) {
+      event.preventDefault();
+   
+      const formAction = this.action;
+      console.log("Form action on submit: " + formAction);
+   
+      const formData = new FormData(this);
+      fetch(formAction, {
+         method: "POST",
+         body: formData
+      })
+      .then(response => response.json())
+      .then(data => {
+         if (data.status === "success") {
+            alert(data.message);
+            closeModal();
+            loadPets(document.getElementById('petCategory').value);
+         } else {
+            alert("Error: " + data.message);
+         }
+      })
+      .catch(error => {
+         console.error("Error:", error);
+         alert("Something went wrong. Please try again.");
+      });
+   });   
 
    document.getElementById("petImage").addEventListener("change", function (event) {
       const file = event.target.files[0];
@@ -1616,16 +1620,35 @@ function fetchAnalyticsData() {
 function createAdoptedPetsChart(adoptedPets, fosteredPets, onProcessPets) {
    const ctx = document.getElementById('mainPetsChart').getContext('2d');
    new Chart(ctx, {
-      type: 'bar',
+      type: 'line',
       data: {
          labels: ['Adopted', 'Fostered', 'On Process'],
-         datasets: [{
-            label: 'Pets Count',
-            data: [adoptedPets, fosteredPets, onProcessPets],
-            backgroundColor: ['#4CAF50', '#FF9800', '#FF5722'],
-            borderColor: ['#388E3C', '#F57C00', '#D32F2F'],
-            borderWidth: 1
-         }]
+         datasets: [
+            {
+               label: 'Adopted Pets',
+               data: [adoptedPets, 0, 0],
+               backgroundColor: 'rgba(76, 175, 80, 0.2)',
+               borderColor: '#4CAF50',
+               fill: true,
+               borderWidth: 2
+            },
+            {
+               label: 'Fostered Pets',
+               data: [0, fosteredPets, 0], 
+               backgroundColor: 'rgba(255, 152, 0, 0.2)',
+               borderColor: '#FF9800', 
+               fill: true, 
+               borderWidth: 2
+            },
+            {
+               label: 'On Process Pets',
+               data: [0, 0, onProcessPets],
+               backgroundColor: 'rgba(255, 87, 34, 0.2)',
+               borderColor: '#FF5722', 
+               fill: true, 
+               borderWidth: 2
+            }
+         ]
       },
       options: {
          responsive: true,
@@ -1636,19 +1659,24 @@ function createAdoptedPetsChart(adoptedPets, fosteredPets, onProcessPets) {
             tooltip: {
                callbacks: {
                   label: function (tooltipItem) {
-                     return tooltipItem.label + ': ' + tooltipItem.raw + ' pets';
+                     return tooltipItem.dataset.label + ': ' + tooltipItem.raw + ' pets';
                   }
                }
             }
          },
          scales: {
             y: {
-               beginAtZero: true
-            }
+               beginAtZero: true,
+               title: {
+                  display: true,
+                  text: 'Number of Pets'
+               }
+            },
          }
       }
    });
 }
+
 
 function createRehomeInquiriesChart(rehomeInquiries) {
    const ctx = document.getElementById('rehomeInquiriesChart').getContext('2d');
