@@ -1089,7 +1089,7 @@ body.dark .animal-card {
 	height: auto;
 	max-width: 100%;
 	display: block;
-	object-fit: cover;
+	object-fit: contain;
 	aspect-ratio: 3/4;
 }
 
