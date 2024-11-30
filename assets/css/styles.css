@@ -772,7 +772,8 @@ body {
 	display: flex;
 	flex-direction: row;
 	align-items: stretch;
-	gap: 12px;
+    gap: 24px;
+    padding-bottom: 16px;
 }
 
 .profile-image {
@@ -1562,6 +1563,74 @@ body.dark .donate-card {
 	text-align: center;
 }
 
+.contact-card .faqs p{
+	text-align: left;
+}
+
+/* FAQ Section */
+.faq-section {
+    padding: 20px;
+}
+
+.faq-title {
+    text-align: center;
+    font-size: 1.2rem;
+    margin-bottom: 20px;
+    color: #333;
+}
+
+.faq-container {
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.faq-item {
+    border-bottom: 1px solid #ddd;
+    padding: 15px 0;
+}
+
+.faq-question {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    cursor: pointer;
+    font-size: .8rem;
+    font-weight: 500;
+    color: #555;
+}
+
+.faq-answer {
+    display: none; /* Hidden by default */
+    padding: 10px 0;
+    font-size: 1rem;
+    color: #666;
+    animation: fadeIn 0.3s ease-in-out;
+}
+
+/* FAQ Chevron Icon */
+.faq-question i {
+    font-size: 1.5rem;
+    transition: transform 0.3s;
+}
+
+/* Rotate icon when active */
+.faq-question.active i {
+    transform: rotate(180deg);
+}
+
+/* Animation */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(-10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+
 .contact-text1 {
 	color: var(--darkbg);
 	text-align: center;
@@ -1577,7 +1646,8 @@ body.dark .donate-card {
 }
 
 .contact-info,
-.animal-cruelty-info {
+.animal-cruelty-info, 
+.faqs{
 	padding: 20px;
 	border-radius: 8px;
 	box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.30);
@@ -1586,6 +1656,9 @@ body.dark .donate-card {
 	transform: translateY(-2px);
 	transition: all 0.3s ease;
 	color: var(--darkbg);
+}
+.faqs{
+    width: -webkit-fill-available;
 }
 
 .contact-info h4 {
