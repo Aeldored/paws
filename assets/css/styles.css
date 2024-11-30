@@ -404,7 +404,7 @@ body {
 	justify-content: space-between;
 	align-items: center;
 	padding: 12px;
-	border: 1px solid #ddd;
+	border: 1px solid var(--lightbg);
 	border-radius: 8px;
 	margin-bottom: 10px;
 	background-color: var(--light);
@@ -527,7 +527,7 @@ body {
 .email-container {
 	padding: 5px;
 	font-size: 1em;
-	border: 1px solid #ccc;
+	border: 1px solid var(--lightbg);
 	border-radius: 5px;
 	outline: none;
 	color: white;
@@ -606,7 +606,7 @@ body {
 .popover-card button {
 	padding: 10px;
 	font-size: 1em;
-	border: 1px solid #ccc;
+	border: 1px solid var(--lightbg);
 	border-radius: 5px;
 	outline: none;
 	color: white;
@@ -700,7 +700,7 @@ body {
 	flex: 1;
 	padding: 10px;
 	font-size: 1em;
-	border: 1px solid #ccc;
+	border: 1px solid var(--lightbg);
 	border-radius: 5px;
 	border: none;
 	outline: none;
@@ -751,7 +751,7 @@ body {
 	padding: 20px;
 	border-radius: 8px;
 	background: rgba(var(--light), 0.7);
-	border: 1px solid #ddd;
+	border: 1px solid var(--lightbg);
 	align-items: flex-start;
 }
 
@@ -764,7 +764,7 @@ body {
 	padding: 20px;
 	border-radius: 8px;
 	background: rgba(var(--light), 0.7);
-	border: 1px solid #ddd;
+	border: 1px solid var(--light);
 	align-items: flex-start;
 }
 
@@ -825,7 +825,7 @@ body {
 #fostersTable table td,
 #rehomePopover table th,
 #rehomePopover table td {
-	border: 1px solid #ddd;
+	border: 1px solid var(--lightbg);
 	padding: 8px;
 	text-align: center;
 	border-radius: 5px;
@@ -1153,7 +1153,7 @@ body.dark .animal-card {
 }
 
 .adopt-button:hover,
-#adopt-button:hover {
+#adopt-button:hover,  .donate-button:hover, #rehomeButton:hover {
 	background: #4CAF50;
 	color: var(--darkbg);
 	font-weight: bold;
@@ -1226,7 +1226,7 @@ body.dark .animal-card {
 	align-items: center;
 	justify-content: center;
 	background-color: rgba(200, 200, 200, 0.3);
-	border: 2px dashed #cccccc;
+	border: 2px dashed var(--lightbg);
 	border-radius: 20px;
 	cursor: pointer;
 	transition: all 0.3s ease;
@@ -1264,13 +1264,13 @@ body.dark .animal-card {
 
 .tab-button {
 	padding: 10px 20px;
-	border: 1px solid #ccc;
+	border: 1px solid var(--lightbg);
 	cursor: pointer;
 	border-radius: 5px;
 }
 
 .tab-button:hover {
-	background-color: #ddd;
+	background-color: var(--lightbg);
 }
 
 #add-pet-modal {
@@ -1332,21 +1332,21 @@ body.dark .animal-card {
 	padding: 10px;
 	margin: 5px 0;
 	font-size: 1em;
-	border: 1px solid #ccc;
+	border: 1px solid var(--lightbg);
 	border-radius: 5px;
 	outline: none;
 	transition: border-color 0.3s ease;
 }
 
 #add-pet-modal form button {
-	background-color: #388E3C;
-	color: white;
+	background-color: var(--primary);
+	color: var(--lightbg);
 	border: none;
 	cursor: pointer;
 }
 
 #add-pet-modal form button:hover {
-	background-color: #2c6d2f;
+	background-color: var(--primary);
 }
 
 #pet-overlay {
@@ -1531,7 +1531,7 @@ body.dark .donate-card {
 	display: inline-block;
 	margin-top: 15px;
 	padding: 10px 20px;
-	background-color: #388E3C;
+	background-color: var(--primary);
 	color: #fff;
 	border-radius: 5px;
 	text-decoration: none;
@@ -1585,7 +1585,7 @@ body.dark .donate-card {
 }
 
 .faq-item {
-    border-bottom: 1px solid #ddd;
+    border-bottom: 1px solid var(--lightbg);
     padding: 15px 0;
 }
 
@@ -1687,7 +1687,7 @@ body.dark .donate-card {
 }
 
 .contact-info ul li a {
-	color: #2ecc71;
+	color: var(--primary);
 	text-decoration: none;
 }
 
