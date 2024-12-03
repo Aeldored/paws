@@ -35,6 +35,26 @@ window.addEventListener('resize', () => {
    }
 });
 
+// Select all FAQ items
+const faqItems = document.querySelectorAll('.faq-item');
+
+faqItems.forEach(item => {
+    const question = item.querySelector('.faq-question');
+    question.addEventListener('click', () => {
+        // Toggle active class
+        question.classList.toggle('active');
+
+        // Toggle visibility of the answer
+        const answer = item.querySelector('.faq-answer');
+        if (answer.style.display === 'block') {
+            answer.style.display = 'none';
+        } else {
+            answer.style.display = 'block';
+        }
+    });
+});
+
+
 function tdnn() {
    const tdnnElement = document.getElementsByClassName("tdnn")[0];
    const body = document.body;
