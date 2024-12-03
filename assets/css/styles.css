@@ -1567,8 +1567,8 @@ body.dark .donate-card {
 	text-align: left;
 }
 
-/* FAQ Section */
-.faq-section {
+/* FAQ Section Styles */
+.faq-section { 
     padding: 20px;
 }
 
@@ -1604,7 +1604,7 @@ body.dark .donate-card {
     padding: 10px 0;
     font-size: 1rem;
     color: #666;
-    animation: fadeIn 0.3s ease-in-out;
+    animation: faqFadeIn 0.3s ease-in-out;
 }
 
 /* FAQ Chevron Icon */
@@ -1618,8 +1618,8 @@ body.dark .donate-card {
     transform: rotate(180deg);
 }
 
-/* Animation */
-@keyframes fadeIn {
+/* FAQ Fade-In Animation */
+@keyframes faqFadeIn {
     from {
         opacity: 0;
         transform: translateY(-10px);
