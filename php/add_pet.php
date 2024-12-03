@@ -22,7 +22,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $petDescription = $_POST['petDescription'];
     $petImage = $_FILES['petImage'];
 
-    $targetDir = $_SERVER['DOCUMENT_ROOT'] . "/fureverhomes/assets/uploads/"; 
+    $targetDir = $_SERVER['DOCUMENT_ROOT'] . "/FurHomes/assets/uploads/"; 
     $imageName = time() . "_" . basename($petImage["name"]);
     $targetFile = $targetDir . $imageName;
 

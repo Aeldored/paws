@@ -1742,6 +1742,11 @@ canvas {
 }
 
 @media (max-width: 768px) {
+
+	.contact-group {
+		display: block; 
+	}
+
 	.analytics-section {
 		height: auto;
 		padding: 16px;
@@ -1769,6 +1774,8 @@ canvas {
 	.analytics-title {
 		font-size: 1.1rem;
 	}
+
+	
 }
 
 @media (min-width: 768px) and (max-width: 1024px) {
@@ -1931,7 +1938,7 @@ body.login-page .login-container:hover {
 	}
 
 	.home-section .image-container h1 {
-		font-size: 2em;
+		font-size: 1.4em;
 	}
 
 	.home-section .image-container .objective .obj-section li {

@@ -22,7 +22,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST')
 
     if (isset($_FILES['petImage']) && $_FILES['petImage']['error'] === UPLOAD_ERR_OK)
     {
-        $targetDir = $_SERVER['DOCUMENT_ROOT'] . "/fureverhomes/assets/uploads/";
+        $targetDir = $_SERVER['DOCUMENT_ROOT'] . "/FurHomes/assets/uploads/";
         $imageName = time() . "_" . basename($_FILES['petImage']['name']);
         $targetFile = $targetDir . $imageName;
         if (move_uploaded_file($_FILES['petImage']['tmp_name'], $targetFile))
