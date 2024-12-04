@@ -24,7 +24,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $petPhoto = null;
 
     if (isset($_FILES['petPhoto']) && $_FILES['petPhoto']['error'] == 0) {
-        $target_dir = $_SERVER['DOCUMENT_ROOT'] . "/fureverhomes/assets/rehome/";
+        $target_dir = $_SERVER['DOCUMENT_ROOT'] . "/FurHomes/assets/rehome/";
         $target_file = $target_dir . basename($_FILES["petPhoto"]["name"]);
 
         $imageFileType = strtolower(pathinfo($target_file, PATHINFO_EXTENSION));

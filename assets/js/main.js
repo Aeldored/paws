@@ -1799,7 +1799,7 @@ function createDonorsSponsorsFostersChart(donors, sponsors, fosters) {
 function createDonationsChart(totalDonations, totalSponsorAmount) {
    const ctx = document.getElementById('donationsChart').getContext('2d');
    new Chart(ctx, {
-      type: 'pie',
+      type: 'doughnut',
       data: {
          labels: ['Total Donations', 'Sponsor Amounts'],
          datasets: [{
