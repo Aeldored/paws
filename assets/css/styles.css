@@ -1576,7 +1576,7 @@ body.dark .donate-card {
     text-align: center;
     font-size: 1.2rem;
     margin-bottom: 20px;
-    color: #333;
+    color: var(--darkbg);
 }
 
 .faq-container {
@@ -1596,14 +1596,14 @@ body.dark .donate-card {
     cursor: pointer;
     font-size: .8rem;
     font-weight: 500;
-    color: #555;
+    color: var(--darkbg);
 }
 
 .faq-answer {
     display: none; /* Hidden by default */
     padding: 10px 0;
     font-size: 1rem;
-    color: #666;
+    color: var(--darkbg);
     animation: faqFadeIn 0.3s ease-in-out;
 }
 
@@ -1731,7 +1731,7 @@ body.dark .donate-card {
 .rehome-section button {
 	padding: 10px 100px;
 	margin-top: 15px;
-	background-color: #388E3C;
+	background-color: var(--primary);
 	color: white;
 	border: none;
 	border-radius: 5px;
