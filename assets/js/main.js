@@ -2223,32 +2223,32 @@ if (window.location.pathname.includes('admin.html')) {
    }
 }
 
-var inactivityTimeout = 15 * 60 * 1000;
-var timeoutWarning;
-var lastActivityTime = Date.now();
+if (window.location.pathname === '/FurHomes/admin.html') {
+   var inactivityTimeout = 15 * 60 * 1000;
+   var timeoutWarning;
+   var lastActivityTime = Date.now();
 
-function logout() {
-   console.log("User logged out due to inactivity.");
-   window.location.href = '/FurHomes/login.html';
+   function logout() {
+      console.log("User logged out due to inactivity.");
+      window.location.href = '/FurHomes/login.html';
+   }
+
+   function resetTimer() {
+      clearTimeout(timeoutWarning);
+      timeoutWarning = setTimeout(logout, inactivityTimeout);
+      lastActivityTime = Date.now();
+   }
+
+   window.onload = function () {
+      resetTimer();
+
+      document.addEventListener('mousemove', resetTimer);
+      document.addEventListener('keypress', resetTimer);
+
+      setInterval(function () {
+         var inactivityDuration = (Date.now() - lastActivityTime) / 1000;
+         console.clear();
+         console.log(`Inactivity Timer: ${inactivityDuration.toFixed(1)} seconds`);
+      }, 1000);
+   };
 }
-
-function resetTimer() {
-   clearTimeout(timeoutWarning);
-   timeoutWarning = setTimeout(logout, inactivityTimeout);
-   lastActivityTime = Date.now();
-}
-
-window.onload = function () {
-   resetTimer();
-
-   document.addEventListener('mousemove', resetTimer);
-   document.addEventListener('keypress', resetTimer);
-
-   setInterval(function () {
-
-      var inactivityDuration = (Date.now() - lastActivityTime) / 1000;
-
-      console.clear();
-      console.log(`Inactivity Timer: ${inactivityDuration.toFixed(1)} seconds`);
-   }, 1000);
-};
