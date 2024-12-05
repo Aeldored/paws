@@ -1258,20 +1258,24 @@ body.dark .animal-card {
 }
 
 .tab-button.active {
-	background-color: #4CAF50;
+	background-color: var(--primary);
 	color: var(--lightbg);
 }
 
 .tab-button {
-	padding: 10px 20px;
-	border: none;
-	cursor: pointer;
-	border-radius: 5px;
+	background: var(--grey);
+    color: var(--darkbg);
+    border: none;
+    border-radius: 5px;
+    padding: 10px 16px;
+    cursor: pointer;
+    transition: all 0.3s ease;
 }
 
 .tab-button:hover {
-	background-color: var(--lightbg);
-	color: var(--darkbg);
+	background: var(--primary);
+    color: var(--light);
+    font-weight: bold;
 }
 
 #add-pet-modal {
