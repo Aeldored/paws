@@ -446,115 +446,104 @@ body {
 	color: #777;
 }
 
-/* Profile Image in Nav */
 .content nav .profile img {
-    width: 36px;
-    height: 36px;
-    object-fit: cover;
-    border-radius: 50%;
-    cursor: pointer;
+	width: 36px;
+	height: 36px;
+	object-fit: cover;
+	border-radius: 50%;
+	cursor: pointer;
 }
 
-/* Profile Container */
 .profile-container {
-    background-color: var(--light);
-    border-radius: 10px;
-    padding: 20px;
-    width: 300px;
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
-    position: fixed;
-    top: 63px;
-    right: 1%;
-    z-index: 999;
-    display: none;
-    animation: slideIn 0.5s ease-out;
-    overflow: hidden;
+	background-color: var(--light);
+	border-radius: 10px;
+	padding: 20px;
+	width: 300px;
+	box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+	position: fixed;
+	top: 63px;
+	right: 1%;
+	z-index: 999;
+	display: none;
+	animation: slideIn 0.5s ease-out;
+	overflow: hidden;
 }
 
-/* Profile Image in View and Edit */
 .profile-container .profile-picture img {
-    width: 120px;
-    height: 120px;
-    object-fit: cover;
-    border-radius: 50%;
-    margin-bottom: 20px;
+	width: 120px;
+	height: 120px;
+	object-fit: cover;
+	border-radius: 50%;
+	margin-bottom: 20px;
 }
 
-/* Profile Details */
 .profile-container .profile-details {
 	color: var(--darkbg);
-    margin-bottom: 20px;
+	margin-bottom: 20px;
 }
 
 .profile-container .profile-details p {
-    font-size: 14px;
+	font-size: 14px;
 	color: var(--darkbg);
-    margin: 8px 0;
+	margin: 8px 0;
 }
 
 .profile-container .profile-details input {
-    width: 100%;
-    padding: 8px;
-    border: 1px solid #ddd;
-    border-radius: 5px;
-    font-size: 14px;
+	width: 100%;
+	padding: 8px;
+	border: 1px solid #ddd;
+	border-radius: 5px;
+	font-size: 14px;
 }
 
-/* Button Styles */
 .profile-container button {
-    padding: 10px 20px;
-    background-color: var(--primary);
-    color: var(--light);
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    font-size: 14px;
-    transition: background-color 0.3s ease;
+	padding: 10px 20px;
+	background-color: var(--primary);
+	color: var(--light);
+	border: none;
+	border-radius: 5px;
+	cursor: pointer;
+	font-size: 14px;
+	transition: background-color 0.3s ease;
 	color: var(--darkbg);
 }
 
 .profile-container button:hover {
-    background-color: var(--primary-dark);
+	background-color: var(--primary-dark);
 }
 
-/* Save Profile Button in Edit Mode */
 #save-profile-btn {
-    background-color: var(--primary);
+	background-color: var(--primary);
 }
 
 #save-profile-btn:hover {
-    background-color: var(--primary-dark);
+	background-color: var(--primary-dark);
 }
 
-/* Profile Picture Upload */
 .profile-container label {
-    display: block;
-    cursor: pointer;
+	display: block;
+	cursor: pointer;
 }
 
 .profile-container input[type="file"] {
-    display: none;
+	display: none;
 }
 
-/* Hide profile view by default */
 .hide-profile {
-    display: none;
+	display: none;
 }
 
-
-/* Slide-in Animation */
 @keyframes slideIn {
-    0% {
-        opacity: 0;
-        transform: translateX(20px);
-    }
+	0% {
+		opacity: 0;
+		transform: translateX(20px);
+	}
 
-    100% {
-        opacity: 1;
-        transform: translateX(0);
-    }
+	100% {
+		opacity: 1;
+		transform: translateX(0);
+	}
 }
-
 
 .content main {
 	width: 100%;
@@ -859,7 +848,7 @@ body {
 	align-items: flex-start;
 }
 
-.petProfile{
+.petProfile {
 	flex: 1.5;
 	display: flex;
 	flex-direction: row;
@@ -872,12 +861,12 @@ body {
 	align-items: flex-start;
 }
 
-.contact-group{
+.contact-group {
 	display: flex;
 	flex-direction: row;
 	align-items: stretch;
-    gap: 24px;
-    padding-bottom: 16px;
+	gap: 24px;
+	padding-bottom: 16px;
 }
 
 .profile-image {
@@ -973,7 +962,9 @@ body {
 	border-radius: 5px;
 }
 
-.contact-info:hover, .animal-cruelty-info:hover, .sidebar .side-menu li a:hover,
+.contact-info:hover,
+.animal-cruelty-info:hover,
+.sidebar .side-menu li a:hover,
 .content main .adopt-animal li:hover,
 .about-section:hover,
 .adopt-section:hover,
@@ -988,12 +979,12 @@ body {
 	justify-items: left;
 }
 
-.donate-box{
-    display: flex;
-    flex-wrap: nowrap;
-    align-items: center;
-    flex-direction: column;
-    justify-content: center;
+.donate-box {
+	display: flex;
+	flex-wrap: nowrap;
+	align-items: center;
+	flex-direction: column;
+	justify-content: center;
 }
 
 .content main .adopt-animal li {
@@ -1036,7 +1027,8 @@ body {
 	margin-bottom: 20px;
 }
 
-.about-text, .adopt-text {
+.about-text,
+.adopt-text {
 	font-size: 1.1em;
 	color: var(--darkbg);
 	margin-bottom: 16px;
@@ -1187,26 +1179,25 @@ body {
 }
 
 #viewApplicationsBtn {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    background-color: #4caf50; /* Same green as valid-button */
-    color: white;
-    border: none;
-    border-radius: 5px;
-    padding: 10px 16px;
-    font-size: 10px;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
-    position: absolute;
-    bottom: 20px;
-    right: 20px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	background-color: #4caf50;
+	color: white;
+	border: none;
+	border-radius: 5px;
+	padding: 10px 16px;
+	font-size: 10px;
+	cursor: pointer;
+	transition: background-color 0.3s ease;
+	position: absolute;
+	bottom: 20px;
+	right: 20px;
+	box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
 }
 
-/* Hover effect for View Applications button */
 #viewApplicationsBtn:hover {
-    background-color: #45a049; /* Darker green for hover effect */
+	background-color: #45a049;
 }
 
 .animal-card {
@@ -1255,42 +1246,39 @@ body.dark .animal-card {
 	padding: 8px;
 }
 
-/* Flexbox for the validate-group */
 .validate-group {
-    display: flex; /* Use flexbox for the buttons */
-    gap: 10px; /* Add space between buttons */
-    justify-content: space-between; /* Align buttons side by side */
-    margin-top: 8px;
+	display: flex;
+	gap: 10px;
+	justify-content: space-between;
+	margin-top: 8px;
 }
 
-/* Styling for Valid button */
 .card-content .valid-button {
-    background-color: #4caf50;
-    color: #fff;
-    border: none;
-    border-radius: 5px;
-    padding: 10px 16px;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
+	background-color: #4caf50;
+	color: #fff;
+	border: none;
+	border-radius: 5px;
+	padding: 10px 16px;
+	cursor: pointer;
+	transition: background-color 0.3s ease;
 }
 
 .card-content .valid-button:hover {
-    background-color: #45a049;
+	background-color: #45a049;
 }
 
-/* Styling for Invalid button */
 .card-content .invalid-button {
-    background-color: #f44336;
-    color: #fff;
-    border: none;
-    border-radius: 5px;
-    padding: 10px 16px;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
+	background-color: #f44336;
+	color: #fff;
+	border: none;
+	border-radius: 5px;
+	padding: 10px 16px;
+	cursor: pointer;
+	transition: background-color 0.3s ease;
 }
 
 .card-content .invalid-button:hover {
-    background-color: #d32f2f;
+	background-color: #d32f2f;
 }
 
 .animal-name {
@@ -1323,28 +1311,30 @@ body.dark .animal-card {
 }
 
 .adopt-button:hover,
-#adopt-button:hover,  .donate-button:hover, #rehomeButton:hover {
+#adopt-button:hover,
+.donate-button:hover,
+#rehomeButton:hover {
 	background: #4CAF50;
 	color: var(--darkbg);
 	font-weight: bold;
 }
 
 .delete-button {
-    position: absolute;
-    top: 1px;
-    right: 10px;
-    color: red; 
-    font-size: 25px; 
-    font-weight: 900;
-    border: none; 
-    background: none;
-    padding: 0;
-    cursor: pointer; 
-    z-index: 10; 
+	position: absolute;
+	top: 1px;
+	right: 10px;
+	color: red;
+	font-size: 25px;
+	font-weight: 900;
+	border: none;
+	background: none;
+	padding: 0;
+	cursor: pointer;
+	z-index: 10;
 }
 
 .delete-button:hover {
-    color: darkred;
+	color: darkred;
 }
 
 .carousel-container {
@@ -1434,18 +1424,18 @@ body.dark .animal-card {
 
 .tab-button {
 	background: var(--grey);
-    color: var(--darkbg);
-    border: none;
-    border-radius: 5px;
-    padding: 10px 16px;
-    cursor: pointer;
-    transition: all 0.3s ease;
+	color: var(--darkbg);
+	border: none;
+	border-radius: 5px;
+	padding: 10px 16px;
+	cursor: pointer;
+	transition: all 0.3s ease;
 }
 
 .tab-button:hover {
 	background: var(--primary);
-    color: var(--light);
-    font-weight: bold;
+	color: var(--light);
+	font-weight: bold;
 }
 
 #add-pet-modal {
@@ -1536,10 +1526,11 @@ body.dark .animal-card {
 	backdrop-filter: blur(5px);
 }
 
-#petImagePreview, #imagePreviewLabel {
-    width: 150px; 
-    height: auto; 
-    margin-top: 10px;
+#petImagePreview,
+#imagePreviewLabel {
+	width: 150px;
+	height: auto;
+	margin-top: 10px;
 }
 
 .content main .bottom-data {
@@ -1645,7 +1636,8 @@ body.dark .animal-card {
 	justify-content: stretch;
 }
 
-.content main .bottom-data .donate .task-list li .task-title, .content main .bottom-data .rehome {
+.content main .bottom-data .donate .task-list li .task-title,
+.content main .bottom-data .rehome {
 	display: flex;
 	align-items: center;
 }
@@ -1738,73 +1730,69 @@ body.dark .donate-card {
 	text-align: center;
 }
 
-.contact-card .faqs p{
+.contact-card .faqs p {
 	text-align: left;
 }
 
-/* FAQ Section Styles */
-.faq-section { 
-    padding: 20px;
+.faq-section {
+	padding: 20px;
 }
 
 .faq-title {
-    text-align: center;
-    font-size: 1.2rem;
-    margin-bottom: 20px;
-    color: var(--darkbg);
+	text-align: center;
+	font-size: 1.2rem;
+	margin-bottom: 20px;
+	color: var(--darkbg);
 }
 
 .faq-container {
-    max-width: 800px;
-    margin: 0 auto;
+	max-width: 800px;
+	margin: 0 auto;
 }
 
 .faq-item {
-    border-bottom: 1px solid var(--lightbg);
-    padding: 15px 0;
+	border-bottom: 1px solid var(--lightbg);
+	padding: 15px 0;
 }
 
 .faq-question {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    cursor: pointer;
-    font-size: .8rem;
-    font-weight: 500;
-    color: var(--darkbg);
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	cursor: pointer;
+	font-size: .8rem;
+	font-weight: 500;
+	color: var(--darkbg);
 }
 
 .faq-answer {
-    display: none; /* Hidden by default */
-    padding: 10px 0;
-    font-size: 1rem;
-    color: var(--darkbg);
-    animation: faqFadeIn 0.3s ease-in-out;
+	display: none;
+	padding: 10px 0;
+	font-size: 1rem;
+	color: var(--darkbg);
+	animation: faqFadeIn 0.3s ease-in-out;
 }
 
-/* FAQ Chevron Icon */
 .faq-question i {
-    font-size: 1.5rem;
-    transition: transform 0.3s;
+	font-size: 1.5rem;
+	transition: transform 0.3s;
 }
 
-/* Rotate icon when active */
 .faq-question.active i {
-    transform: rotate(180deg);
+	transform: rotate(180deg);
 }
 
-/* FAQ Fade-In Animation */
 @keyframes faqFadeIn {
-    from {
-        opacity: 0;
-        transform: translateY(-10px);
-    }
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
-}
+	from {
+		opacity: 0;
+		transform: translateY(-10px);
+	}
 
+	to {
+		opacity: 1;
+		transform: translateY(0);
+	}
+}
 
 .contact-text1 {
 	color: var(--darkbg);
@@ -1821,8 +1809,8 @@ body.dark .donate-card {
 }
 
 .contact-info,
-.animal-cruelty-info, 
-.faqs{
+.animal-cruelty-info,
+.faqs {
 	padding: 20px;
 	border-radius: 8px;
 	box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.30);
@@ -1832,8 +1820,9 @@ body.dark .donate-card {
 	transition: all 0.3s ease;
 	color: var(--darkbg);
 }
-.faqs{
-    width: -webkit-fill-available;
+
+.faqs {
+	width: -webkit-fill-available;
 }
 
 .contact-info h4 {
@@ -1993,7 +1982,7 @@ canvas {
 @media (max-width: 768px) {
 
 	.contact-group {
-		display: block; 
+		display: block;
 	}
 
 	.analytics-section {
@@ -2024,35 +2013,41 @@ canvas {
 		font-size: 1.1rem;
 	}
 
-	#profile-view, #profile-edit {
-        width: 60%;
-        font-size: 14px;  /* Smaller text for mobile */
-        padding: 10px;
-    }
+	#profile-view,
+	#profile-edit {
+		width: 60%;
+		font-size: 14px;
+		padding: 10px;
+	}
 
-    #profile-pic {
-        width: 80px;
-        height: 80px;
-    }
+	#profile-pic {
+		width: 80px;
+		height: 80px;
+	}
 
-    .profile-container {
-        padding: 10px;
-    }
+	.profile-container {
+		padding: 10px;
+	}
 
-    #profile-name, #profile-age, #profile-gender, #profile-location {
-        font-size: 16px; /* Adjust text size for smaller screens */
-    }
+	#profile-name,
+	#profile-age,
+	#profile-gender,
+	#profile-location {
+		font-size: 16px;
+	}
 
-    /* Stack buttons vertically */
-    #edit-profile-btn, #save-profile-btn, #cancel-edit-btn, #close-profile-btn{
-        width: 100%;
-        margin-top: 10px;
-        padding: 12px;
-    }
 
-	
+	#edit-profile-btn,
+	#save-profile-btn,
+	#cancel-edit-btn,
+	#close-profile-btn {
+		width: 100%;
+		margin-top: 10px;
+		padding: 12px;
+	}
+
+
 }
-
 
 @media (min-width: 768px) and (max-width: 1024px) {
 	.analytics-grid {
@@ -2104,7 +2099,6 @@ canvas {
 		height: auto;
 	}
 }
-
 
 body.login-page::before {
 	content: '';
@@ -2202,25 +2196,25 @@ body.login-page .login-container:hover {
 	}
 
 	body.login-page .login-container {
-        width: 90%; /* Make the container width smaller on mobile */
-        padding: 15px;
-    }
+		width: 90%;
+		padding: 15px;
+	}
 
-    body.login-page .login-container h2 {
-        font-size: 18px; /* Adjust font size for smaller screens */
-    }
+	body.login-page .login-container h2 {
+		font-size: 18px;
+	}
 
-    body.login-page .input-group label {
-        font-size: 13px; /* Adjust label font size */
-    }
+	body.login-page .input-group label {
+		font-size: 13px;
+	}
 
-    body.login-page .input-group input {
-        font-size: 13px; /* Adjust input font size */
-    }
+	body.login-page .input-group input {
+		font-size: 13px;
+	}
 
-    body.login-page button {
-        font-size: 13px; /* Adjust button font size */
-    }
+	body.login-page button {
+		font-size: 13px;
+	}
 }
 
 @media screen and (max-width: 768px) {
@@ -2233,7 +2227,7 @@ body.login-page .login-container:hover {
 		left: 200px;
 	}
 
-	.contact-group{
+	.contact-group {
 		display: flex;
 		flex-direction: column;
 		align-items: stretch;
@@ -2276,7 +2270,8 @@ body.login-page .login-container:hover {
 		flex-direction: column;
 	}
 
-	.sidebar::-webkit-scrollbar, .content::-webkit-scrollbar {
+	.sidebar::-webkit-scrollbar,
+	.content::-webkit-scrollbar {
 		display: none;
 	}
 
@@ -2394,17 +2389,22 @@ body.login-page .login-container:hover {
 	}
 
 	#profile-pic {
-        width: 60px;
-        height: 60px;
-    }
+		width: 60px;
+		height: 60px;
+	}
 
-    #profile-name, #profile-age, #profile-gender, #profile-location {
-        font-size: 14px;  /* Further reduce text size */
-    }
+	#profile-name,
+	#profile-age,
+	#profile-gender,
+	#profile-location {
+		font-size: 14px;
+	}
 
-    #edit-profile-btn, #save-profile-btn, #cancel-edit-btn {
-        padding: 10px 15px;
-    }
+	#edit-profile-btn,
+	#save-profile-btn,
+	#cancel-edit-btn {
+		padding: 10px 15px;
+	}
 }
 
 @media (max-width: 768px) {
@@ -2433,26 +2433,26 @@ body.login-page .login-container:hover {
 	.card-image {
 		height: 60%;
 	}
+
 	body.login-page .login-container {
-        width: 95%; /* Further reduce width on smaller screens */
-        padding: 10px;
-    }
+		width: 95%;
+		padding: 10px;
+	}
 
-    body.login-page .login-container h2 {
-        font-size: 16px; /* Further reduce font size for small screens */
-    }
+	body.login-page .login-container h2 {
+		font-size: 16px;
+	}
 
-    body.login-page .input-group label {
-        font-size: 12px; /* Adjust label font size */
-    }
+	body.login-page .input-group label {
+		font-size: 12px;
+	}
 
-    body.login-page .input-group input {
-        font-size: 12px; /* Adjust input font size */
-    }
+	body.login-page .input-group input {
+		font-size: 12px;
+	}
 
-    body.login-page button {
-        font-size: 12px; /* Adjust button font size */
-    }
-	
+	body.login-page button {
+		font-size: 12px;
+	}
+
 }
-

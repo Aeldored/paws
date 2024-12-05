@@ -35,25 +35,22 @@ window.addEventListener('resize', () => {
    }
 });
 
-// Select all FAQ items
 const faqItems = document.querySelectorAll('.faq-item');
 
 faqItems.forEach(item => {
-    const question = item.querySelector('.faq-question');
-    question.addEventListener('click', () => {
-        // Toggle active class
-        question.classList.toggle('active');
+   const question = item.querySelector('.faq-question');
+   question.addEventListener('click', () => {
 
-        // Toggle visibility of the answer
-        const answer = item.querySelector('.faq-answer');
-        if (answer.style.display === 'block') {
-            answer.style.display = 'none';
-        } else {
-            answer.style.display = 'block';
-        }
-    });
+      question.classList.toggle('active');
+
+      const answer = item.querySelector('.faq-answer');
+      if (answer.style.display === 'block') {
+         answer.style.display = 'none';
+      } else {
+         answer.style.display = 'block';
+      }
+   });
 });
-
 
 function tdnn() {
    const tdnnElement = document.getElementsByClassName("tdnn")[0];
@@ -105,13 +102,13 @@ if (window.location.pathname.includes('admin.html')) {
       if (notifDropdown.style.display === 'block') {
          fetchNotifications();
       }
-       // Close notification dropdown when the user scrolls
-   document.querySelector('.content').addEventListener('scroll', () => {
-      const notifDropdown = document.getElementById('notif-dropdown');
-      if (notifDropdown.style.display === 'block') {
-         notifDropdown.style.display = 'none';
-      }
-   });
+
+      document.querySelector('.content').addEventListener('scroll', () => {
+         const notifDropdown = document.getElementById('notif-dropdown');
+         if (notifDropdown.style.display === 'block') {
+            notifDropdown.style.display = 'none';
+         }
+      });
    });
 
    function markAsRead(button) {
@@ -1096,7 +1093,7 @@ function openModal(petType) {
    document.querySelector('#addPetForm button[type="submit"]').innerText = 'Add Pet';
    form.action = 'php/add_pet.php';
    document.getElementById('petImage').setAttribute('required', 'true');
-   
+
    const petIdInput = document.querySelector('#addPetForm input[name="petId"]');
    if (petIdInput) {
       petIdInput.remove();
@@ -1116,7 +1113,6 @@ function openModal(petType) {
       document.getElementById('petAge').setAttribute('placeholder', 'Age in years');
    }
 }
-
 
 function closeModal() {
    document.getElementById('add-pet-modal').style.display = 'none';
@@ -1394,72 +1390,68 @@ window.onload = function () {
 
 function markAsAdopted(petId) {
    fetch(`php/updatePetStatus.php?id=${petId}&status=Adopted`, {
-       method: 'POST'
-   })
-   .then(response => response.json())
-   .then(data => {
-       if (data.success) {
-           // Remove the pet card from the DOM
-           document.getElementById(`pet-card-${petId}`).remove();
-           alert('Pet has been sent away.');
-       } else {
-           alert('Failed to update pet status.');
-       }
-   })
-   .catch(error => console.error('Error:', error));
+         method: 'POST'
+      })
+      .then(response => response.json())
+      .then(data => {
+         if (data.success) {
+
+            document.getElementById(`pet-card-${petId}`).remove();
+            alert('Pet has been sent away.');
+         } else {
+            alert('Failed to update pet status.');
+         }
+      })
+      .catch(error => console.error('Error:', error));
 }
 
 function markAsAvailable(petId) {
    fetch(`php/updatePetStatus.php?id=${petId}&status=Available`, {
-       method: 'POST'
-   })
-   .then(response => response.json())
-   .then(data => {
-       if (data.success) {
-         loadPets('Adoptable');
-           alert('Pet status updated to Available.');
-       } else {
-           alert('Failed to update pet status.');
-       }
-   })
-   .catch(error => console.error('Error:', error));
+         method: 'POST'
+      })
+      .then(response => response.json())
+      .then(data => {
+         if (data.success) {
+            loadPets('Adoptable');
+            alert('Pet status updated to Available.');
+         } else {
+            alert('Failed to update pet status.');
+         }
+      })
+      .catch(error => console.error('Error:', error));
 }
 
-// Show the applications popover
 function showApplicationsPopover() {
-    document.getElementById('applicationsPopover').style.display = 'block';
-    loadApplications('walk-in'); // Default to walk-in applications on load
-    document.getElementById('pet-overlay').style.display = 'block';
+   document.getElementById('applicationsPopover').style.display = 'block';
+   loadApplications('walk-in');
+   document.getElementById('pet-overlay').style.display = 'block';
 }
 
-// Close the applications popover
 function closeApplicationsPopover() {
-    document.getElementById('applicationsPopover').style.display = 'none';
-    document.getElementById('pet-overlay').style.display = 'none';
+   document.getElementById('applicationsPopover').style.display = 'none';
+   document.getElementById('pet-overlay').style.display = 'none';
 }
 
-// Load applications based on the type (walk-in or online)
 function loadApplications(type) {
-   // Highlight the active tab
+
    document.getElementById('walkin-tab').classList.remove('active');
    document.getElementById('online-tab').classList.remove('active');
 
    if (type === 'walk-in') {
-       document.getElementById('walkin-tab').classList.add('active');
+      document.getElementById('walkin-tab').classList.add('active');
    } else {
-       document.getElementById('online-tab').classList.add('active');
+      document.getElementById('online-tab').classList.add('active');
    }
 
-   // Fetch applications based on the selected type (walk-in or online)
    fetch(`php/getApplications.php?type=${type}`)
-       .then(response => response.json())
-       .then(data => {
-           const tableBody = document.getElementById('applicationsTableBody');
-           tableBody.innerHTML = '';  // Clear previous data
+      .then(response => response.json())
+      .then(data => {
+         const tableBody = document.getElementById('applicationsTableBody');
+         tableBody.innerHTML = '';
 
-           data.forEach(application => {
-               const row = document.createElement('tr');
-               row.innerHTML = `
+         data.forEach(application => {
+            const row = document.createElement('tr');
+            row.innerHTML = `
                    <td>${application.pet_name}</td>
                    <td>${application.adopter_name || application.foster_name}</td>
                    <td>${application.adopter_email || application.foster_email}</td>
@@ -1471,66 +1463,59 @@ function loadApplications(type) {
                         }
                    </td>
                `;
-               tableBody.appendChild(row);
-           });
-       })
-       .catch(error => console.error('Error fetching applications:', error));
+            tableBody.appendChild(row);
+         });
+      })
+      .catch(error => console.error('Error fetching applications:', error));
 }
 
-// Action for sending email (opens the user's default email client)
 function sendEmail(email, name, applicationType) {
    const subject = `Response to your ${applicationType} application`;
    let body;
 
    if (applicationType === 'fostering') {
       body = `Hello ${name},\n\n` +
-             `Greetings from FurHomes!\n\n` +
-             `We hope this message finds you well. We are reaching out in response to your kind application for fostering a pet. We are so grateful for your willingness to open your home and heart to one of our animals in need.\n\n` +
-             `Fostering is a crucial part of our mission to ensure that our animals are loved and cared for while awaiting their forever homes. Your application will be thoroughly reviewed by our team, and we will be in touch with you shortly to provide more information and discuss the next steps.\n\n` +
-             `We sincerely appreciate your compassion and support for our cause. If you have any further questions or concerns, please don’t hesitate to reach out to us.\n\n` +
-             `Best regards,\nThe FurHomes Team`;
-  } else if (applicationType === 'adoption') {
+         `Greetings from FurHomes!\n\n` +
+         `We hope this message finds you well. We are reaching out in response to your kind application for fostering a pet. We are so grateful for your willingness to open your home and heart to one of our animals in need.\n\n` +
+         `Fostering is a crucial part of our mission to ensure that our animals are loved and cared for while awaiting their forever homes. Your application will be thoroughly reviewed by our team, and we will be in touch with you shortly to provide more information and discuss the next steps.\n\n` +
+         `We sincerely appreciate your compassion and support for our cause. If you have any further questions or concerns, please don’t hesitate to reach out to us.\n\n` +
+         `Best regards,\nThe FurHomes Team`;
+   } else if (applicationType === 'adoption') {
       body = `Hello ${name},\n\n` +
-             `Greetings from FurHomes!\n\n` +
-             `Thank you for taking the time to submit your application for adopting a pet. We are thrilled to hear about your interest in providing a loving and permanent home for one of our animals. Your application is very important to us, and we will carefully review the information you’ve provided.\n\n` +
-             `Adoption is a big step, and we are excited about the possibility of you becoming part of our FurHomes family. Our team will reach out to you soon with more details regarding the adoption process, as well as the next steps to bring your new companion into your home.\n\n` +
-             `We truly appreciate your generosity and commitment to improving the lives of animals in need. If you have any questions or would like to discuss anything further, feel free to contact us at any time.\n\n` +
-             `Best regards,\nThe FurHomes Team`;
-  } else {
+         `Greetings from FurHomes!\n\n` +
+         `Thank you for taking the time to submit your application for adopting a pet. We are thrilled to hear about your interest in providing a loving and permanent home for one of our animals. Your application is very important to us, and we will carefully review the information you’ve provided.\n\n` +
+         `Adoption is a big step, and we are excited about the possibility of you becoming part of our FurHomes family. Our team will reach out to you soon with more details regarding the adoption process, as well as the next steps to bring your new companion into your home.\n\n` +
+         `We truly appreciate your generosity and commitment to improving the lives of animals in need. If you have any questions or would like to discuss anything further, feel free to contact us at any time.\n\n` +
+         `Best regards,\nThe FurHomes Team`;
+   } else {
       body = `Hello ${name},\n\n` +
-             `Greetings from FurHomes!\n\n` +
-             `Thank you for your recent application. We wanted to let you know that we’ve received your information and our team will review your application thoroughly. We will reach out to you soon with an update and further steps.\n\n` +
-             `If you have any additional questions or need assistance, please don’t hesitate to reach out. We appreciate your interest in our work and are grateful for your support.\n\n` +
-             `Best regards,\nThe FurHomes Team`;
-  }  
+         `Greetings from FurHomes!\n\n` +
+         `Thank you for your recent application. We wanted to let you know that we’ve received your information and our team will review your application thoroughly. We will reach out to you soon with an update and further steps.\n\n` +
+         `If you have any additional questions or need assistance, please don’t hesitate to reach out. We appreciate your interest in our work and are grateful for your support.\n\n` +
+         `Best regards,\nThe FurHomes Team`;
+   }
 
-   // Opens the default email client with pre-filled subject and body
    window.location.href = `mailto:${email}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
 }
 
 function markAsInvalid(petId, row) {
-    console.log('markAsInvalid called with petId:', petId); // Debugging line
-    fetch(`php/updatePetStatus.php?id=${petId}&status=Available`, {
-        method: 'POST'
-    })
-    .then(response => response.json())
-    .then(data => {
-        if (data.success) {
-            // Optionally, you can refresh the pet list if needed
-            // loadPets('Adoptable'); // Refresh the adoptable pet list
+   console.log('markAsInvalid called with petId:', petId);
+   fetch(`php/updatePetStatus.php?id=${petId}&status=Available`, {
+         method: 'POST'
+      })
+      .then(response => response.json())
+      .then(data => {
+         if (data.success) {
 
-            // Remove the row from the table (without deleting from the database)
             row.remove();
 
             alert('Pet status updated to Available.');
-        } else {
+         } else {
             alert('Failed to update pet status.');
-        }
-    })
-    .catch(error => console.error('Error:', error));
+         }
+      })
+      .catch(error => console.error('Error:', error));
 }
-
-
 
 function deletePet(petId) {
    const confirmation = confirm("Are you sure you want to delete this pet?");
@@ -1575,7 +1560,7 @@ if (window.location.pathname.includes('admin.html')) {
             if (data.status === 'error') {
                throw new Error(data.message);
             }
-   
+
             document.getElementById('petCategory').value = data.category;
             document.getElementById('petType').value = data.type;
             document.getElementById('petName').value = data.name;
@@ -1591,14 +1576,14 @@ if (window.location.pathname.includes('admin.html')) {
             const petCategorySelect = document.getElementById('petCategory');
             petCategorySelect.value = category;
             document.getElementById('petCategoryHidden').value = category;
-            
+
             const form = document.getElementById('addPetForm');
             document.querySelector('#addPetForm button[type="submit"]').innerText = 'Save Pet';
-            form.action = 'crudphp/update_pet.php'; 
+            form.action = 'crudphp/update_pet.php';
             document.getElementById('petImage').removeAttribute('required');
 
-            console.log("Form action set to: " + form.action); 
-   
+            console.log("Form action set to: " + form.action);
+
             let petIdInput = document.querySelector('#addPetForm input[name="petId"]');
             if (!petIdInput) {
                petIdInput = document.createElement('input');
@@ -1614,35 +1599,35 @@ if (window.location.pathname.includes('admin.html')) {
          .catch(error => {
             console.error('Error fetching pet details:', error);
             alert('Failed to load pet details.');
-         });   
+         });
    }
 
    document.getElementById("addPetForm").addEventListener("submit", function (event) {
       event.preventDefault();
-   
+
       const formAction = this.action;
       console.log("Form action on submit: " + formAction);
-   
+
       const formData = new FormData(this);
       fetch(formAction, {
-         method: "POST",
-         body: formData
-      })
-      .then(response => response.json())
-      .then(data => {
-         if (data.status === "success") {
-            alert(data.message);
-            closeModal();
-            loadPets(document.getElementById('petCategory').value);
-         } else {
-            alert("Error: " + data.message);
-         }
-      })
-      .catch(error => {
-         console.error("Error:", error);
-         alert("Something went wrong. Please try again.");
-      });
-   });   
+            method: "POST",
+            body: formData
+         })
+         .then(response => response.json())
+         .then(data => {
+            if (data.status === "success") {
+               alert(data.message);
+               closeModal();
+               loadPets(document.getElementById('petCategory').value);
+            } else {
+               alert("Error: " + data.message);
+            }
+         })
+         .catch(error => {
+            console.error("Error:", error);
+            alert("Something went wrong. Please try again.");
+         });
+   });
 
    document.getElementById("petImage").addEventListener("change", function (event) {
       const file = event.target.files[0];
@@ -1809,8 +1794,7 @@ function createAdoptedPetsChart(adoptedPets, fosteredPets, onProcessPets) {
       type: 'line',
       data: {
          labels: ['Adopted', 'Fostered', 'On Process'],
-         datasets: [
-            {
+         datasets: [{
                label: 'Adopted Pets',
                data: [adoptedPets, 0, 0],
                backgroundColor: 'rgba(76, 175, 80, 0.2)',
@@ -1820,18 +1804,18 @@ function createAdoptedPetsChart(adoptedPets, fosteredPets, onProcessPets) {
             },
             {
                label: 'Fostered Pets',
-               data: [0, fosteredPets, 0], 
+               data: [0, fosteredPets, 0],
                backgroundColor: 'rgba(255, 152, 0, 0.2)',
-               borderColor: '#FF9800', 
-               fill: true, 
+               borderColor: '#FF9800',
+               fill: true,
                borderWidth: 2
             },
             {
                label: 'On Process Pets',
                data: [0, 0, onProcessPets],
                backgroundColor: 'rgba(255, 87, 34, 0.2)',
-               borderColor: '#FF5722', 
-               fill: true, 
+               borderColor: '#FF5722',
+               fill: true,
                borderWidth: 2
             }
          ]
@@ -1862,7 +1846,6 @@ function createAdoptedPetsChart(adoptedPets, fosteredPets, onProcessPets) {
       }
    });
 }
-
 
 function createRehomeInquiriesChart(rehomeInquiries) {
    const ctx = document.getElementById('rehomeInquiriesChart').getContext('2d');
@@ -1904,7 +1887,7 @@ function createDonorsSponsorsFostersChart(donors, sponsors, fosters) {
    const fixedData = {
       donors: donors || 22,
       sponsors: sponsors || 9,
-      fosters: fosters || 3
+      fosters: fosters || 1
    };
    if (window.donorsSponsorsFostersChart instanceof Chart) {
       window.donorsSponsorsFostersChart.destroy();
@@ -2034,231 +2017,238 @@ document.addEventListener('DOMContentLoaded', function () {
 if (window.location.pathname.includes('admin.html')) {
 
    document.addEventListener('DOMContentLoaded', () => {
-      // Fetch profile data on page load
+
       const profileView = document.getElementById('profile-view');
-    profileView.style.display = 'none'; // Hide profile view by default
+      profileView.style.display = 'none';
 
       fetch('php/getProfile.php')
-          .then(response => response.json())
-          .then(data => {
-              if (data.success) {
-                  // Update profile details
-                  document.getElementById('profile-name').innerText = data.name;
-                  document.getElementById('profile-age').innerText = data.age;
-                  document.getElementById('profile-gender').innerText = data.gender;
-                  document.getElementById('profile-location').innerText = data.location;
-  
-                  // Update profile picture in both view and edit mode
-                  if (data.profile_picture) {
-                      document.getElementById('current-profile-picture').src = data.profile_picture;
-                      document.getElementById('edit-profile-picture').src = data.profile_picture;
-                      document.querySelector('#profile-view .profile-picture img').src = data.profile_picture;
-                  }
-              }
-          });
-  
-      // Handle profile picture upload and profile update in edit mode
+         .then(response => response.json())
+         .then(data => {
+            if (data.success) {
+
+               document.getElementById('profile-name').innerText = data.name;
+               document.getElementById('profile-age').innerText = data.age;
+               document.getElementById('profile-gender').innerText = data.gender;
+               document.getElementById('profile-location').innerText = data.location;
+
+               if (data.profile_picture) {
+                  document.getElementById('current-profile-picture').src = data.profile_picture;
+                  document.getElementById('edit-profile-picture').src = data.profile_picture;
+                  document.querySelector('#profile-view .profile-picture img').src = data.profile_picture;
+               }
+            }
+         });
+
       const profilePicUpload = document.getElementById('profile-pic-upload');
       const saveProfileBtn = document.getElementById('save-profile-btn');
-      
+
       saveProfileBtn.addEventListener('click', (event) => {
-          event.preventDefault();
-  
-          const formData = new FormData();
-          formData.append('name', document.getElementById('edit-name').value);
-          formData.append('age', document.getElementById('edit-age').value);
-          formData.append('gender', document.getElementById('edit-gender').value);
-          formData.append('location', document.getElementById('edit-location').value);
-  
-          if (profilePicUpload.files.length > 0) {
-              formData.append('profile_picture', profilePicUpload.files[0]);
-          }
-  
-          // Send the updated data to the PHP script
-          fetch('php/updateProfile.php', {
-              method: 'POST',
-              body: formData,
-          })
-          .then(response => response.json())
-          .then(data => {
-              if (data.success) {
-                  // Update the profile details in the view section dynamically
+         event.preventDefault();
+
+         const formData = new FormData();
+         formData.append('name', document.getElementById('edit-name').value);
+         formData.append('age', document.getElementById('edit-age').value);
+         formData.append('gender', document.getElementById('edit-gender').value);
+         formData.append('location', document.getElementById('edit-location').value);
+
+         if (profilePicUpload.files.length > 0) {
+            formData.append('profile_picture', profilePicUpload.files[0]);
+         }
+
+         fetch('php/updateProfile.php', {
+               method: 'POST',
+               body: formData,
+            })
+            .then(response => response.json())
+            .then(data => {
+               if (data.success) {
+
                   document.getElementById('profile-name').innerText = data.name;
                   document.getElementById('profile-age').innerText = data.age;
                   document.getElementById('profile-gender').innerText = data.gender;
                   document.getElementById('profile-location').innerText = data.location;
-  
+
                   if (data.profile_picture) {
-                      document.getElementById('current-profile-picture').src = data.profile_picture;
-                      document.getElementById('edit-profile-picture').src = data.profile_picture;
-                      document.querySelector('#profile-view .profile-picture img').src = data.profile_picture;
+                     document.getElementById('current-profile-picture').src = data.profile_picture;
+                     document.getElementById('edit-profile-picture').src = data.profile_picture;
+                     document.querySelector('#profile-view .profile-picture img').src = data.profile_picture;
                   }
 
-              } else {
-              }
-          })
-          .catch(error => {
-              alert('Error: ' + error.message);
-          });
-      });  
+               } else {}
+            })
+            .catch(error => {
+               alert('Error: ' + error.message);
+            });
+      });
 
-// Profile Icon Click Event Listener for Profile View and Edit
-document.querySelector('.profile').addEventListener('click', (event) => {
-   event.preventDefault();
+      document.querySelector('.profile').addEventListener('click', (event) => {
+         event.preventDefault();
 
-   const profileView = document.getElementById('profile-view');
-   const profileEdit = document.getElementById('profile-edit');
+         const profileView = document.getElementById('profile-view');
+         const profileEdit = document.getElementById('profile-edit');
 
-   // Toggle profile view visibility
-   if (profileView.style.display === 'block') {
-       profileView.style.display = 'none'; // Close if already open
-   } else {
-       profileView.style.display = 'block'; // Open if closed
-   }
+         if (profileView.style.display === 'block') {
+            profileView.style.display = 'none';
+         } else {
+            profileView.style.display = 'block';
+         }
 
-   // Close profile edit if it's open
-   if (profileEdit.style.display === 'block') {
-       profileEdit.style.display = 'none';
-   }
-});
+         if (profileEdit.style.display === 'block') {
+            profileEdit.style.display = 'none';
+         }
+      });
 
-// Close the profile and profile-edit when the user scrolls
-document.querySelector('.content').addEventListener('scroll', () => {
-   const profileView = document.getElementById('profile-view');
-   const profileEdit = document.getElementById('profile-edit');
+      document.querySelector('.content').addEventListener('scroll', () => {
+         const profileView = document.getElementById('profile-view');
+         const profileEdit = document.getElementById('profile-edit');
 
-   // Hide profile view and profile edit on scroll
-   if (profileView.style.display === 'block') {
-       profileView.style.display = 'none';
-   }
-   if (profileEdit.style.display === 'block') {
-       profileEdit.style.display = 'none';
-   }
-});
+         if (profileView.style.display === 'block') {
+            profileView.style.display = 'none';
+         }
+         if (profileEdit.style.display === 'block') {
+            profileEdit.style.display = 'none';
+         }
+      });
 
+      document.getElementById('edit-profile-btn').addEventListener('click', () => {
+         document.getElementById('profile-view').style.display = 'none';
+         document.getElementById('profile-edit').style.display = 'block';
 
+         document.getElementById('edit-name').value = document.getElementById('profile-name').innerText;
+         document.getElementById('edit-age').value = document.getElementById('profile-age').innerText;
+         document.getElementById('edit-gender').value = document.getElementById('profile-gender').innerText;
+         document.getElementById('edit-location').value = document.getElementById('profile-location').innerText;
+      });
 
+      document.getElementById('save-profile-btn').addEventListener('click', () => {
+         const formData = new FormData();
+         formData.append('name', document.getElementById('edit-name').value);
+         formData.append('age', document.getElementById('edit-age').value);
+         formData.append('gender', document.getElementById('edit-gender').value);
+         formData.append('location', document.getElementById('edit-location').value);
 
-   // Switch to edit profile
-   document.getElementById('edit-profile-btn').addEventListener('click', () => {
-       document.getElementById('profile-view').style.display = 'none';
-       document.getElementById('profile-edit').style.display = 'block';
+         const fileInput = document.getElementById('profile-pic-upload');
+         if (fileInput.files[0]) {
+            formData.append('profile_picture', fileInput.files[0]);
+         }
 
-       // Populate edit fields with current data
-       document.getElementById('edit-name').value = document.getElementById('profile-name').innerText;
-       document.getElementById('edit-age').value = document.getElementById('profile-age').innerText;
-       document.getElementById('edit-gender').value = document.getElementById('profile-gender').innerText;
-       document.getElementById('edit-location').value = document.getElementById('profile-location').innerText;
+         fetch('php/updateProfile.php', {
+               method: 'POST',
+               body: formData
+            })
+            .then(response => response.json())
+            .then(data => {
+               if (data.success) {
+
+                  document.getElementById('profile-name').innerText = data.name;
+                  document.getElementById('profile-age').innerText = data.age;
+                  document.getElementById('profile-gender').innerText = data.gender;
+                  document.getElementById('profile-location').innerText = data.location;
+
+                  if (data.profile_picture) {
+
+                     document.getElementById('current-profile-picture').src = data.profile_picture;
+
+                     document.getElementById('edit-profile-picture').src = data.profile_picture;
+                  }
+
+                  document.getElementById('profile-view').style.display = 'block';
+                  document.getElementById('profile-edit').style.display = 'none';
+               } else {
+                  console.error(data.message);
+               }
+            });
+      });
    });
 
- // Save profile changes
-document.getElementById('save-profile-btn').addEventListener('click', () => {
-   const formData = new FormData();
-   formData.append('name', document.getElementById('edit-name').value);
-   formData.append('age', document.getElementById('edit-age').value);
-   formData.append('gender', document.getElementById('edit-gender').value);
-   formData.append('location', document.getElementById('edit-location').value);
+   const profileView = document.getElementById('profile-view');
+   const profileEdit = document.getElementById('profile-edit');
+   const editProfileBtn = document.getElementById('edit-profile-btn');
+   const closeProfileBtn = document.getElementById('close-profile-btn');
+   const saveProfileBtn = document.getElementById('save-profile-btn');
+   const cancelEditBtn = document.getElementById('cancel-edit-btn');
 
-   const fileInput = document.getElementById('profile-pic-upload');
-   if (fileInput.files[0]) {
-       formData.append('profile_picture', fileInput.files[0]);
+   editProfileBtn.addEventListener('click', () => {
+      profileView.style.display = 'none';
+      profileEdit.style.display = 'block';
+   });
+
+   closeProfileBtn.addEventListener('click', () => {
+      profileView.style.display = 'none';
+   });
+
+   saveProfileBtn.addEventListener('click', () => {
+
+      profileEdit.style.display = 'none';
+      profileView.style.display = 'block';
+   });
+
+   cancelEditBtn.addEventListener('click', () => {
+      profileEdit.style.display = 'none';
+      profileView.style.display = 'block';
+   });
+
+   function toggleRegisterForm(showRegister) {
+      var loginForm = document.querySelector('form[action="php/login.php"]');
+      var registerForm = document.getElementById('registerForm');
+
+      if (showRegister) {
+
+         loginForm.style.display = 'none';
+         registerForm.style.display = 'block';
+      } else {
+
+         loginForm.style.display = 'block';
+         registerForm.style.display = 'none';
+         resetLoginForm();
+      }
    }
 
-   fetch('php/updateProfile.php', {
-       method: 'POST',
-       body: formData
-   })
-   .then(response => response.json())
-   .then(data => {
-       if (data.success) {
-           // Update profile data
-           document.getElementById('profile-name').innerText = data.name;
-           document.getElementById('profile-age').innerText = data.age;
-           document.getElementById('profile-gender').innerText = data.gender;
-           document.getElementById('profile-location').innerText = data.location;
+   function resetLoginForm() {
 
-           // Update profile picture dynamically
-           if (data.profile_picture) {
-               // Update the current profile picture (on profile view)
-               document.getElementById('current-profile-picture').src = data.profile_picture;
-               // Update the edit profile picture (in edit mode)
-               document.getElementById('edit-profile-picture').src = data.profile_picture;
-           }
+      document.getElementById("login-username").value = "";
+      document.getElementById("login-password").value = "";
+   }
 
-           // Toggle back to profile view
-           document.getElementById('profile-view').style.display = 'block';
-           document.getElementById('profile-edit').style.display = 'none';
-       } else {
-           console.error(data.message);
-       }
-   });     
-});
-});
+   function validatePassword() {
+      var password = document.getElementById("register-password").value;
+      var confirmPassword = document.getElementById("confirm_password").value;
 
-// References to elements
-const profileView = document.getElementById('profile-view');
-const profileEdit = document.getElementById('profile-edit');
-const editProfileBtn = document.getElementById('edit-profile-btn');
-const closeProfileBtn = document.getElementById('close-profile-btn');
-const saveProfileBtn = document.getElementById('save-profile-btn');
-const cancelEditBtn = document.getElementById('cancel-edit-btn');
+      if (password !== confirmPassword) {
+         alert("Passwords do not match.");
+         return false;
+      }
 
-// Show edit mode
-editProfileBtn.addEventListener('click', () => {
-    profileView.style.display = 'none';
-    profileEdit.style.display = 'block';
-});
-
-// Close profile view
-closeProfileBtn.addEventListener('click', () => {
-    profileView.style.display = 'none';
-});
-
-// Save profile (example logic)
-saveProfileBtn.addEventListener('click', () => {
-    // Save logic (to be implemented)
-    profileEdit.style.display = 'none';
-    profileView.style.display = 'block';
-});
-
-// Cancel edit
-cancelEditBtn.addEventListener('click', () => {
-    profileEdit.style.display = 'none';
-    profileView.style.display = 'block';
-});
-
-
-function toggleRegisterForm(showRegister) {
-    var loginForm = document.querySelector('form[action="php/login.php"]');
-    var registerForm = document.getElementById('registerForm');
-
-    if (showRegister) {
-        // Show the register form and hide the login form
-        loginForm.style.display = 'none';
-        registerForm.style.display = 'block';
-    } else {
-        // Show the login form and hide the register form
-        loginForm.style.display = 'block';
-        registerForm.style.display = 'none';
-        resetLoginForm();  // Reset the login form fields
-    }
+      return true;
+   }
 }
 
-function resetLoginForm() {
-    // Reset the login form fields
-    document.getElementById("login-username").value = "";
-    document.getElementById("login-password").value = "";
+var inactivityTimeout = 15 * 60 * 1000;
+var timeoutWarning;
+var lastActivityTime = Date.now();
+
+function logout() {
+   console.log("User logged out due to inactivity.");
+   window.location.href = '/FurHomes/login.html';
 }
 
-function validatePassword() {
-    var password = document.getElementById("register-password").value;
-    var confirmPassword = document.getElementById("confirm_password").value;
-
-    if (password !== confirmPassword) {
-        alert("Passwords do not match.");
-        return false; // Prevent form submission
-    }
-
-    return true; // Allow form submission
+function resetTimer() {
+   clearTimeout(timeoutWarning);
+   timeoutWarning = setTimeout(logout, inactivityTimeout);
+   lastActivityTime = Date.now();
 }
-}
+
+window.onload = function () {
+   resetTimer();
+
+   document.addEventListener('mousemove', resetTimer);
+   document.addEventListener('keypress', resetTimer);
+
+   setInterval(function () {
+
+      var inactivityDuration = (Date.now() - lastActivityTime) / 1000;
+
+      console.clear();
+      console.log(`Inactivity Timer: ${inactivityDuration.toFixed(1)} seconds`);
+   }, 1000);
+};

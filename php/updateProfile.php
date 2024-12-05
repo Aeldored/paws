@@ -22,12 +22,11 @@ if (isset($_SESSION['username'])) {
 
     $profilePictureUpdate = "";
     if (isset($_FILES['profile_picture']) && $_FILES['profile_picture']['error'] === UPLOAD_ERR_OK) {
-        // Set the target directory for uploaded images
+
         $targetDir = $_SERVER['DOCUMENT_ROOT'] . "/FurHomes/assets/uploads/";
         $imageName = time() . "_" . basename($_FILES['profile_picture']['name']);
         $targetFile = $targetDir . $imageName;
 
-        // Move the uploaded file to the target directory
         if (move_uploaded_file($_FILES['profile_picture']['tmp_name'], $targetFile)) {
             $profilePictureUpdate = ", profile_picture = :profile_picture";
         } else {
@@ -35,7 +34,6 @@ if (isset($_SESSION['username'])) {
         }
     }
 
-    // Construct the query dynamically based on whether the profile picture is updated
     $query = "UPDATE admins SET name = :name, age = :age, gender = :gender, location = :location" . $profilePictureUpdate . " WHERE username = :username";
 
     $stmt = $pdo->prepare($query);
@@ -45,7 +43,6 @@ if (isset($_SESSION['username'])) {
     $stmt->bindParam(':location', $location);
     $stmt->bindParam(':username', $username);
 
-    // Bind profile picture only if it was updated
     if (!empty($profilePictureUpdate)) {
         $stmt->bindParam(':profile_picture', $imageName);
     }

@@ -18,17 +18,15 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $age = $_POST['age'];
     $gender = $_POST['gender'];
     $location = $_POST['location'];
-    $email = $_POST['email']; // Get the email input
+    $email = $_POST['email']; 
     $input_username = $_POST['username'];
     $input_password = $_POST['password'];
 
-    // Password validation (you can customize this further)
     if (strlen($input_password) < 8) {
         echo "<script>alert('Password must be at least 8 characters long.');</script>";
         exit();
     }
 
-    // Check if username already exists
     $stmt = $pdo->prepare("SELECT * FROM admins WHERE username = :username OR email = :email");
     $stmt->execute(['username' => $input_username, 'email' => $email]);
     $existingUser = $stmt->fetch(PDO::FETCH_ASSOC);
@@ -36,7 +34,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     if ($existingUser) {
         echo "<script>alert('Username or email already exists!');</script>";
     } else {
-        // Insert the new user into the database
+
         try {
             $hashed_password = password_hash($input_password, PASSWORD_DEFAULT);
             $stmt = $pdo->prepare("INSERT INTO admins (username, password, name, age, gender, location, email) VALUES (:username, :password, :name, :age, :gender, :location, :email)");
@@ -47,10 +45,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 'age' => $age,
                 'gender' => $gender,
                 'location' => $location,
-                'email' => $email // Insert the email
+                'email' => $email 
             ]);
 
-            // After successful registration, redirect back to login page
             header("Location: http://localhost/FurHomes/login.html");
             exit();
         } catch (PDOException $e) {
