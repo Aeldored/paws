@@ -1984,51 +1984,6 @@ canvas {
 	box-shadow: 0px 6px 20px rgba(0, 0, 0, 0.15);
 }
 
-/* Responsive Design for Small Screens */
-@media (max-width: 768px) {
-    #profile-view, #profile-edit {
-        width: 90%;
-        font-size: 14px;  /* Smaller text for mobile */
-        padding: 10px;
-    }
-
-    #profile-pic {
-        width: 80px;
-        height: 80px;
-    }
-
-    .profile-container {
-        padding: 10px;
-    }
-
-    #profile-name, #profile-age, #profile-gender, #profile-location {
-        font-size: 16px; /* Adjust text size for smaller screens */
-    }
-
-    /* Stack buttons vertically */
-    #edit-profile-btn, #save-profile-btn, #cancel-edit-btn {
-        width: 100%;
-        margin-top: 10px;
-        padding: 12px;
-    }
-}
-
-@media (max-width: 480px) {
-    /* Adjust further for very small screens */
-    #profile-pic {
-        width: 60px;
-        height: 60px;
-    }
-
-    #profile-name, #profile-age, #profile-gender, #profile-location {
-        font-size: 14px;  /* Further reduce text size */
-    }
-
-    #edit-profile-btn, #save-profile-btn, #cancel-edit-btn {
-        padding: 10px 15px;
-    }
-}
-
 @media (max-width: 768px) {
 
 	.contact-group {
@@ -2062,6 +2017,32 @@ canvas {
 	.analytics-title {
 		font-size: 1.1rem;
 	}
+
+	#profile-view, #profile-edit {
+        width: 90%;
+        font-size: 14px;  /* Smaller text for mobile */
+        padding: 10px;
+    }
+
+    #profile-pic {
+        width: 80px;
+        height: 80px;
+    }
+
+    .profile-container {
+        padding: 10px;
+    }
+
+    #profile-name, #profile-age, #profile-gender, #profile-location {
+        font-size: 16px; /* Adjust text size for smaller screens */
+    }
+
+    /* Stack buttons vertically */
+    #edit-profile-btn, #save-profile-btn, #cancel-edit-btn {
+        width: 100%;
+        margin-top: 10px;
+        padding: 12px;
+    }
 
 	
 }
@@ -2380,6 +2361,19 @@ body.login-page .login-container:hover {
 		width: 250px;
 		max-height: 350px;
 	}
+
+	#profile-pic {
+        width: 60px;
+        height: 60px;
+    }
+
+    #profile-name, #profile-age, #profile-gender, #profile-location {
+        font-size: 14px;  /* Further reduce text size */
+    }
+
+    #edit-profile-btn, #save-profile-btn, #cancel-edit-btn {
+        padding: 10px 15px;
+    }
 }
 
 @media (max-width: 768px) {
@@ -2408,4 +2402,6 @@ body.login-page .login-container:hover {
 	.card-image {
 		height: 60%;
 	}
+	
 }
+
