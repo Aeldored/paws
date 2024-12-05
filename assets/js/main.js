@@ -2033,18 +2033,74 @@ document.addEventListener('DOMContentLoaded', function () {
 
 if (window.location.pathname.includes('admin.html')) {
 
-document.addEventListener('DOMContentLoaded', () => {
-   // Fetch profile data on page load
-   fetch('php/getProfile.php')
-       .then(response => response.json())
-       .then(data => {
-           if (data.success) {
-               document.getElementById('profile-name').innerText = data.name;
-               document.getElementById('profile-age').innerText = data.age;
-               document.getElementById('profile-gender').innerText = data.gender;
-               document.getElementById('profile-location').innerText = data.location;
-           }
-       });
+   document.addEventListener('DOMContentLoaded', () => {
+      // Fetch profile data on page load
+      const profileView = document.getElementById('profile-view');
+    profileView.style.display = 'none'; // Hide profile view by default
+
+      fetch('php/getProfile.php')
+          .then(response => response.json())
+          .then(data => {
+              if (data.success) {
+                  // Update profile details
+                  document.getElementById('profile-name').innerText = data.name;
+                  document.getElementById('profile-age').innerText = data.age;
+                  document.getElementById('profile-gender').innerText = data.gender;
+                  document.getElementById('profile-location').innerText = data.location;
+  
+                  // Update profile picture in both view and edit mode
+                  if (data.profile_picture) {
+                      document.getElementById('current-profile-picture').src = data.profile_picture;
+                      document.getElementById('edit-profile-picture').src = data.profile_picture;
+                      document.querySelector('#profile-view .profile-picture img').src = data.profile_picture;
+                  }
+              }
+          });
+  
+      // Handle profile picture upload and profile update in edit mode
+      const profilePicUpload = document.getElementById('profile-pic-upload');
+      const saveProfileBtn = document.getElementById('save-profile-btn');
+      
+      saveProfileBtn.addEventListener('click', (event) => {
+          event.preventDefault();
+  
+          const formData = new FormData();
+          formData.append('name', document.getElementById('edit-name').value);
+          formData.append('age', document.getElementById('edit-age').value);
+          formData.append('gender', document.getElementById('edit-gender').value);
+          formData.append('location', document.getElementById('edit-location').value);
+  
+          if (profilePicUpload.files.length > 0) {
+              formData.append('profile_picture', profilePicUpload.files[0]);
+          }
+  
+          // Send the updated data to the PHP script
+          fetch('php/updateProfile.php', {
+              method: 'POST',
+              body: formData,
+          })
+          .then(response => response.json())
+          .then(data => {
+              if (data.success) {
+                  // Update the profile details in the view section dynamically
+                  document.getElementById('profile-name').innerText = data.name;
+                  document.getElementById('profile-age').innerText = data.age;
+                  document.getElementById('profile-gender').innerText = data.gender;
+                  document.getElementById('profile-location').innerText = data.location;
+  
+                  if (data.profile_picture) {
+                      document.getElementById('current-profile-picture').src = data.profile_picture;
+                      document.getElementById('edit-profile-picture').src = data.profile_picture;
+                      document.querySelector('#profile-view .profile-picture img').src = data.profile_picture;
+                  }
+
+              } else {
+              }
+          })
+          .catch(error => {
+              alert('Error: ' + error.message);
+          });
+      });  
 
 // Profile Icon Click Event Listener for Profile View and Edit
 document.querySelector('.profile').addEventListener('click', (event) => {
@@ -2095,42 +2151,48 @@ document.querySelector('.content').addEventListener('scroll', () => {
        document.getElementById('edit-location').value = document.getElementById('profile-location').innerText;
    });
 
-   // Save profile changes
-   document.getElementById('save-profile-btn').addEventListener('click', () => {
-       const formData = new FormData();
-       formData.append('name', document.getElementById('edit-name').value);
-       formData.append('age', document.getElementById('edit-age').value);
-       formData.append('gender', document.getElementById('edit-gender').value);
-       formData.append('location', document.getElementById('edit-location').value);
+ // Save profile changes
+document.getElementById('save-profile-btn').addEventListener('click', () => {
+   const formData = new FormData();
+   formData.append('name', document.getElementById('edit-name').value);
+   formData.append('age', document.getElementById('edit-age').value);
+   formData.append('gender', document.getElementById('edit-gender').value);
+   formData.append('location', document.getElementById('edit-location').value);
 
-       const fileInput = document.getElementById('profile-pic-upload');
-       if (fileInput.files[0]) {
-           formData.append('profile_picture', fileInput.files[0]);
+   const fileInput = document.getElementById('profile-pic-upload');
+   if (fileInput.files[0]) {
+       formData.append('profile_picture', fileInput.files[0]);
+   }
+
+   fetch('php/updateProfile.php', {
+       method: 'POST',
+       body: formData
+   })
+   .then(response => response.json())
+   .then(data => {
+       if (data.success) {
+           // Update profile data
+           document.getElementById('profile-name').innerText = data.name;
+           document.getElementById('profile-age').innerText = data.age;
+           document.getElementById('profile-gender').innerText = data.gender;
+           document.getElementById('profile-location').innerText = data.location;
+
+           // Update profile picture dynamically
+           if (data.profile_picture) {
+               // Update the current profile picture (on profile view)
+               document.getElementById('current-profile-picture').src = data.profile_picture;
+               // Update the edit profile picture (in edit mode)
+               document.getElementById('edit-profile-picture').src = data.profile_picture;
+           }
+
+           // Toggle back to profile view
+           document.getElementById('profile-view').style.display = 'block';
+           document.getElementById('profile-edit').style.display = 'none';
+       } else {
+           console.error(data.message);
        }
-
-       fetch('php/updateProfile.php', {
-           method: 'POST',
-           body: formData
-       })
-           .then(response => response.json())
-           .then(data => {
-               if (data.success) {
-                   // Update view with new data
-                   document.getElementById('profile-name').innerText = data.name;
-                   document.getElementById('profile-age').innerText = data.age;
-                   document.getElementById('profile-gender').innerText = data.gender;
-                   document.getElementById('profile-location').innerText = data.location;
-
-                   if (data.profile_picture) {
-                       document.getElementById('current-profile-picture').src = data.profile_picture;
-                   }
-
-                   // Toggle back to view profile
-                   document.getElementById('profile-view').style.display = 'block';
-                   document.getElementById('profile-edit').style.display = 'none';
-               }
-           });
-   });
+   });     
+});
 });
 
 // References to elements

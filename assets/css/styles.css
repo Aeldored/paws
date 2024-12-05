@@ -460,7 +460,7 @@ body {
     background-color: var(--light);
     border-radius: 10px;
     padding: 20px;
-    width: 500px;
+    width: 300px;
     box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
     position: fixed;
     top: 63px;
@@ -473,8 +473,8 @@ body {
 
 /* Profile Image in View and Edit */
 .profile-container .profile-picture img {
-    width: 100px;
-    height: 100px;
+    width: 120px;
+    height: 120px;
     object-fit: cover;
     border-radius: 50%;
     margin-bottom: 20px;
@@ -535,6 +535,12 @@ body {
 .profile-container input[type="file"] {
     display: none;
 }
+
+/* Hide profile view by default */
+.hide-profile {
+    display: none;
+}
+
 
 /* Slide-in Animation */
 @keyframes slideIn {
@@ -2019,7 +2025,7 @@ canvas {
 	}
 
 	#profile-view, #profile-edit {
-        width: 90%;
+        width: 60%;
         font-size: 14px;  /* Smaller text for mobile */
         padding: 10px;
     }
@@ -2038,7 +2044,7 @@ canvas {
     }
 
     /* Stack buttons vertically */
-    #edit-profile-btn, #save-profile-btn, #cancel-edit-btn {
+    #edit-profile-btn, #save-profile-btn, #cancel-edit-btn, #close-profile-btn{
         width: 100%;
         margin-top: 10px;
         padding: 12px;
@@ -2046,6 +2052,7 @@ canvas {
 
 	
 }
+
 
 @media (min-width: 768px) and (max-width: 1024px) {
 	.analytics-grid {
@@ -2097,6 +2104,7 @@ canvas {
 		height: auto;
 	}
 }
+
 
 body.login-page::before {
 	content: '';
@@ -2192,6 +2200,27 @@ body.login-page .login-container:hover {
 		padding: 10px 30px;
 		font-size: 16px;
 	}
+
+	body.login-page .login-container {
+        width: 90%; /* Make the container width smaller on mobile */
+        padding: 15px;
+    }
+
+    body.login-page .login-container h2 {
+        font-size: 18px; /* Adjust font size for smaller screens */
+    }
+
+    body.login-page .input-group label {
+        font-size: 13px; /* Adjust label font size */
+    }
+
+    body.login-page .input-group input {
+        font-size: 13px; /* Adjust input font size */
+    }
+
+    body.login-page button {
+        font-size: 13px; /* Adjust button font size */
+    }
 }
 
 @media screen and (max-width: 768px) {
@@ -2319,7 +2348,9 @@ body.login-page .login-container:hover {
 	}
 
 	.popover-card {
-		height: inherit;
+		height: fit-content;
+		width: 90%;
+
 	}
 
 	.popover-card iframe {
@@ -2402,6 +2433,26 @@ body.login-page .login-container:hover {
 	.card-image {
 		height: 60%;
 	}
+	body.login-page .login-container {
+        width: 95%; /* Further reduce width on smaller screens */
+        padding: 10px;
+    }
+
+    body.login-page .login-container h2 {
+        font-size: 16px; /* Further reduce font size for small screens */
+    }
+
+    body.login-page .input-group label {
+        font-size: 12px; /* Adjust label font size */
+    }
+
+    body.login-page .input-group input {
+        font-size: 12px; /* Adjust input font size */
+    }
+
+    body.login-page button {
+        font-size: 12px; /* Adjust button font size */
+    }
 	
 }
 

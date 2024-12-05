@@ -11,7 +11,7 @@ if (isset($_SESSION['username'])) {
         $pdo = new PDO("mysql:host=$host;dbname=$dbname", $username, $password);
         $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
     } catch (PDOException $e) {
-        die("Connection failed: " . $e->getMessage());
+        die(json_encode(['success' => false, 'message' => "Connection failed: " . $e->getMessage()]));
     }
 
     $name = $_POST['name'];
@@ -20,19 +20,23 @@ if (isset($_SESSION['username'])) {
     $location = $_POST['location'];
     $username = $_SESSION['username'];
 
-    $profilePicture = null;
-    if (!empty($_FILES['profile_picture']['name'])) {
-        $targetDir = "../assets/images/";
-        $targetFile = $targetDir . basename($_FILES['profile_picture']['name']);
-        move_uploaded_file($_FILES['profile_picture']['tmp_name'], $targetFile);
-        $profilePicture = $targetFile;
+    $profilePictureUpdate = "";
+    if (isset($_FILES['profile_picture']) && $_FILES['profile_picture']['error'] === UPLOAD_ERR_OK) {
+        // Set the target directory for uploaded images
+        $targetDir = $_SERVER['DOCUMENT_ROOT'] . "/FurHomes/assets/uploads/";
+        $imageName = time() . "_" . basename($_FILES['profile_picture']['name']);
+        $targetFile = $targetDir . $imageName;
+
+        // Move the uploaded file to the target directory
+        if (move_uploaded_file($_FILES['profile_picture']['tmp_name'], $targetFile)) {
+            $profilePictureUpdate = ", profile_picture = :profile_picture";
+        } else {
+            die(json_encode(['success' => false, 'message' => 'Error uploading the profile picture.']));
+        }
     }
 
-    $query = "UPDATE admins SET name = :name, age = :age, gender = :gender, location = :location";
-    if ($profilePicture) {
-        $query .= ", profile_picture = :profile_picture";
-    }
-    $query .= " WHERE username = :username";
+    // Construct the query dynamically based on whether the profile picture is updated
+    $query = "UPDATE admins SET name = :name, age = :age, gender = :gender, location = :location" . $profilePictureUpdate . " WHERE username = :username";
 
     $stmt = $pdo->prepare($query);
     $stmt->bindParam(':name', $name);
@@ -40,13 +44,25 @@ if (isset($_SESSION['username'])) {
     $stmt->bindParam(':gender', $gender);
     $stmt->bindParam(':location', $location);
     $stmt->bindParam(':username', $username);
-    if ($profilePicture) {
-        $stmt->bindParam(':profile_picture', $profilePicture);
-    }
-    $stmt->execute();
 
-    echo json_encode(['success' => true, 'name' => $name, 'age' => $age, 'gender' => $gender, 'location' => $location, 'profile_picture' => $profilePicture]);
+    // Bind profile picture only if it was updated
+    if (!empty($profilePictureUpdate)) {
+        $stmt->bindParam(':profile_picture', $imageName);
+    }
+
+    if ($stmt->execute()) {
+        echo json_encode([
+            'success' => true,
+            'name' => $name,
+            'age' => $age,
+            'gender' => $gender,
+            'location' => $location,
+            'profile_picture' => !empty($profilePictureUpdate) ? "/FurHomes/assets/uploads/" . $imageName : null
+        ]);
+    } else {
+        echo json_encode(['success' => false, 'message' => 'Error updating profile.']);
+    }
 } else {
-    echo json_encode(['success' => false]);
+    echo json_encode(['success' => false, 'message' => 'Unauthorized.']);
 }
 ?>
