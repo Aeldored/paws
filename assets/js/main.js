@@ -105,6 +105,13 @@ if (window.location.pathname.includes('admin.html')) {
       if (notifDropdown.style.display === 'block') {
          fetchNotifications();
       }
+       // Close notification dropdown when the user scrolls
+   document.querySelector('.content').addEventListener('scroll', () => {
+      const notifDropdown = document.getElementById('notif-dropdown');
+      if (notifDropdown.style.display === 'block') {
+         notifDropdown.style.display = 'none';
+      }
+   });
    });
 
    function markAsRead(button) {
@@ -1325,20 +1332,31 @@ function displayPets(pets) {
       const isFosterableTab = activeTab && activeTab.classList.contains('fosterable');
       if (isAdmin) {
          petCard = `
-                  <li class="animal-card" id="pet-card-${pet.id}">  <!-- Add pet id here -->
-                    <div class="card-image">
-                        <img src="assets/uploads/${pet.image}" alt="${pet.name}" />
-                    </div>
-                    <div class="card-content">
-                        <h3 class="animal-name">${pet.name}</h3>
-                        <p class="animal-breed">Breed: ${pet.breed}</p>
-                        <p class="animal-age">${pet.category === 'fosterable' ? pet.age + ' months' : pet.age + ' years'}</p>
-                        <p class="animal-description">${pet.description}</p>
-                       <button class="adopt-button" onclick="openEditModal(${pet.id})">Edit</button>
-                    <button class="delete-button" onclick="deletePet(${pet.id})">×</button>  <!-- Delete button -->
-                    </div>
-                </li>
-            `;
+                <li class="animal-card" id="pet-card-${pet.id}">
+            <div class="card-image">
+                <img src="assets/uploads/${pet.image}" alt="${pet.name}" />
+            </div>
+            <div class="card-content">
+                <h3 class="animal-name">${pet.name}</h3>
+                <p class="animal-breed">Breed: ${pet.breed}</p>
+                <p class="animal-age">${pet.category === 'fosterable' ? pet.age + ' months' : pet.age + ' years'}</p>
+                <p class="animal-description">${pet.description}</p>
+                ${
+                    pet.status === 'On Process'
+                        ? `
+                             <div class="validate-group">
+                                <button class="valid-button" onclick="markAsAdopted(${pet.id})">Valid</button>
+                                <button class="invalid-button" onclick="markAsAvailable(${pet.id})">Invalid</button>
+                            </div>
+                          `
+                        : `
+                            <button class="adopt-button" onclick="openEditModal(${pet.id})">Edit</button>
+                            <button class="delete-button" onclick="deletePet(${pet.id})">×</button>
+                          `
+                }
+            </div>
+        </li>
+    `;
       } else {
          const buttonText = pet.category === 'fosterable' || isFosterableTab ? "Foster Me!" : "Adopt Me!";
          const buttonDisabled = pet.status === 'On Process' ? 'disabled' : '';
@@ -1373,6 +1391,146 @@ window.onload = function () {
    switchTab('adoptable');
    loadPets('adoptable');
 };
+
+function markAsAdopted(petId) {
+   fetch(`php/updatePetStatus.php?id=${petId}&status=Adopted`, {
+       method: 'POST'
+   })
+   .then(response => response.json())
+   .then(data => {
+       if (data.success) {
+           // Remove the pet card from the DOM
+           document.getElementById(`pet-card-${petId}`).remove();
+           alert('Pet has been sent away.');
+       } else {
+           alert('Failed to update pet status.');
+       }
+   })
+   .catch(error => console.error('Error:', error));
+}
+
+function markAsAvailable(petId) {
+   fetch(`php/updatePetStatus.php?id=${petId}&status=Available`, {
+       method: 'POST'
+   })
+   .then(response => response.json())
+   .then(data => {
+       if (data.success) {
+         loadPets('Adoptable');
+           alert('Pet status updated to Available.');
+       } else {
+           alert('Failed to update pet status.');
+       }
+   })
+   .catch(error => console.error('Error:', error));
+}
+
+// Show the applications popover
+function showApplicationsPopover() {
+    document.getElementById('applicationsPopover').style.display = 'block';
+    loadApplications('walk-in'); // Default to walk-in applications on load
+    document.getElementById('pet-overlay').style.display = 'block';
+}
+
+// Close the applications popover
+function closeApplicationsPopover() {
+    document.getElementById('applicationsPopover').style.display = 'none';
+    document.getElementById('pet-overlay').style.display = 'none';
+}
+
+// Load applications based on the type (walk-in or online)
+function loadApplications(type) {
+   // Highlight the active tab
+   document.getElementById('walkin-tab').classList.remove('active');
+   document.getElementById('online-tab').classList.remove('active');
+
+   if (type === 'walk-in') {
+       document.getElementById('walkin-tab').classList.add('active');
+   } else {
+       document.getElementById('online-tab').classList.add('active');
+   }
+
+   // Fetch applications based on the selected type (walk-in or online)
+   fetch(`php/getApplications.php?type=${type}`)
+       .then(response => response.json())
+       .then(data => {
+           const tableBody = document.getElementById('applicationsTableBody');
+           tableBody.innerHTML = '';  // Clear previous data
+
+           data.forEach(application => {
+               const row = document.createElement('tr');
+               row.innerHTML = `
+                   <td>${application.pet_name}</td>
+                   <td>${application.adopter_name || application.foster_name}</td>
+                   <td>${application.adopter_email || application.foster_email}</td>
+                   <td>${application.adopter_phone || application.foster_phone}</td>
+                   <td>
+                       ${type === 'online' 
+                          ? `<button onclick="sendEmail('${application.adopter_email || application.foster_email}', '${application.adopter_name || application.foster_name}', '${application.adopter_name ? 'adoption' : 'fostering'}')">Send Email</button>` 
+                          : `<button onclick="markAsInvalid(${application.pet_id}, this.closest('tr'))">Invalid</button>`
+                        }
+                   </td>
+               `;
+               tableBody.appendChild(row);
+           });
+       })
+       .catch(error => console.error('Error fetching applications:', error));
+}
+
+// Action for sending email (opens the user's default email client)
+function sendEmail(email, name, applicationType) {
+   const subject = `Response to your ${applicationType} application`;
+   let body;
+
+   if (applicationType === 'fostering') {
+      body = `Hello ${name},\n\n` +
+             `Greetings from FurHomes!\n\n` +
+             `We hope this message finds you well. We are reaching out in response to your kind application for fostering a pet. We are so grateful for your willingness to open your home and heart to one of our animals in need.\n\n` +
+             `Fostering is a crucial part of our mission to ensure that our animals are loved and cared for while awaiting their forever homes. Your application will be thoroughly reviewed by our team, and we will be in touch with you shortly to provide more information and discuss the next steps.\n\n` +
+             `We sincerely appreciate your compassion and support for our cause. If you have any further questions or concerns, please don’t hesitate to reach out to us.\n\n` +
+             `Best regards,\nThe FurHomes Team`;
+  } else if (applicationType === 'adoption') {
+      body = `Hello ${name},\n\n` +
+             `Greetings from FurHomes!\n\n` +
+             `Thank you for taking the time to submit your application for adopting a pet. We are thrilled to hear about your interest in providing a loving and permanent home for one of our animals. Your application is very important to us, and we will carefully review the information you’ve provided.\n\n` +
+             `Adoption is a big step, and we are excited about the possibility of you becoming part of our FurHomes family. Our team will reach out to you soon with more details regarding the adoption process, as well as the next steps to bring your new companion into your home.\n\n` +
+             `We truly appreciate your generosity and commitment to improving the lives of animals in need. If you have any questions or would like to discuss anything further, feel free to contact us at any time.\n\n` +
+             `Best regards,\nThe FurHomes Team`;
+  } else {
+      body = `Hello ${name},\n\n` +
+             `Greetings from FurHomes!\n\n` +
+             `Thank you for your recent application. We wanted to let you know that we’ve received your information and our team will review your application thoroughly. We will reach out to you soon with an update and further steps.\n\n` +
+             `If you have any additional questions or need assistance, please don’t hesitate to reach out. We appreciate your interest in our work and are grateful for your support.\n\n` +
+             `Best regards,\nThe FurHomes Team`;
+  }  
+
+   // Opens the default email client with pre-filled subject and body
+   window.location.href = `mailto:${email}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+}
+
+function markAsInvalid(petId, row) {
+    console.log('markAsInvalid called with petId:', petId); // Debugging line
+    fetch(`php/updatePetStatus.php?id=${petId}&status=Available`, {
+        method: 'POST'
+    })
+    .then(response => response.json())
+    .then(data => {
+        if (data.success) {
+            // Optionally, you can refresh the pet list if needed
+            // loadPets('Adoptable'); // Refresh the adoptable pet list
+
+            // Remove the row from the table (without deleting from the database)
+            row.remove();
+
+            alert('Pet status updated to Available.');
+        } else {
+            alert('Failed to update pet status.');
+        }
+    })
+    .catch(error => console.error('Error:', error));
+}
+
+
 
 function deletePet(petId) {
    const confirmation = confirm("Are you sure you want to delete this pet?");
@@ -1570,8 +1728,14 @@ if (window.location.pathname.includes("admin.html")) {
                         </td>
                        <td>
   <div class="email-container">
-    <a href="mailto:${inquiry.contactEmail}" class="send-email-link">Send Email</a>
-  </div>
+    <a href="mailto:${inquiry.contactEmail}?subject=${encodeURIComponent('Response to your inquiry about pet adoption')}&body=${encodeURIComponent(`Hello,\n\n` +
+        `Greetings from FurHomes!\n\n` +
+        `Thank you for reaching out to us with your inquiry about placing a pet up for adoption. We greatly appreciate your willingness to help one of our furry friends find their forever home. Your inquiry is very important to us, and we are happy to assist you through the next steps.\n\n` +
+        `At FurHomes, we are committed to ensuring that all of our pets are given the best opportunity to find loving, responsible homes. Our team will carefully review the details of your inquiry and will get in touch with you shortly to guide you through the process of putting a pet up for adoption. We may request additional information or a meeting to learn more about the pet in question, so please stay tuned for more updates.\n\n` +
+        `We understand how important it is for pets to be placed in the right environment, and we truly value your contribution to helping us make that happen. If you have any questions or need further clarification, please feel free to reach out to us anytime. We are here to help!\n\n` +
+        `Thank you once again for your support and for considering FurHomes in this important step. We look forward to working with you to find the perfect home for your pet.\n\n` +
+        `Best regards,\nThe FurHomes Team`)}" class="send-email-link">Send Email</a>
+</div>
 </td>
                     `;
                tableBody.appendChild(row);
@@ -1593,6 +1757,8 @@ if (window.location.pathname.includes("admin.html")) {
                         .then(res => res.json())
                         .then(result => {
                            if (result.success) {
+                              alert('You have successfully responded to their email.');
+
                               const rowToRemove = document.querySelector(`tr[data-id="${inquiryId}"]`);
                               if (rowToRemove) rowToRemove.remove();
                               const tableBody = document.getElementById('rehomeInquiriesTableBody');
@@ -1864,3 +2030,173 @@ function createPetsByTypeChart(petsByType) {
 document.addEventListener('DOMContentLoaded', function () {
    fetchAnalyticsData();
 });
+
+if (window.location.pathname.includes('admin.html')) {
+
+document.addEventListener('DOMContentLoaded', () => {
+   // Fetch profile data on page load
+   fetch('php/getProfile.php')
+       .then(response => response.json())
+       .then(data => {
+           if (data.success) {
+               document.getElementById('profile-name').innerText = data.name;
+               document.getElementById('profile-age').innerText = data.age;
+               document.getElementById('profile-gender').innerText = data.gender;
+               document.getElementById('profile-location').innerText = data.location;
+           }
+       });
+
+// Profile Icon Click Event Listener for Profile View and Edit
+document.querySelector('.profile').addEventListener('click', (event) => {
+   event.preventDefault();
+
+   const profileView = document.getElementById('profile-view');
+   const profileEdit = document.getElementById('profile-edit');
+
+   // Toggle profile view visibility
+   if (profileView.style.display === 'block') {
+       profileView.style.display = 'none'; // Close if already open
+   } else {
+       profileView.style.display = 'block'; // Open if closed
+   }
+
+   // Close profile edit if it's open
+   if (profileEdit.style.display === 'block') {
+       profileEdit.style.display = 'none';
+   }
+});
+
+// Close the profile and profile-edit when the user scrolls
+document.querySelector('.content').addEventListener('scroll', () => {
+   const profileView = document.getElementById('profile-view');
+   const profileEdit = document.getElementById('profile-edit');
+
+   // Hide profile view and profile edit on scroll
+   if (profileView.style.display === 'block') {
+       profileView.style.display = 'none';
+   }
+   if (profileEdit.style.display === 'block') {
+       profileEdit.style.display = 'none';
+   }
+});
+
+
+
+
+   // Switch to edit profile
+   document.getElementById('edit-profile-btn').addEventListener('click', () => {
+       document.getElementById('profile-view').style.display = 'none';
+       document.getElementById('profile-edit').style.display = 'block';
+
+       // Populate edit fields with current data
+       document.getElementById('edit-name').value = document.getElementById('profile-name').innerText;
+       document.getElementById('edit-age').value = document.getElementById('profile-age').innerText;
+       document.getElementById('edit-gender').value = document.getElementById('profile-gender').innerText;
+       document.getElementById('edit-location').value = document.getElementById('profile-location').innerText;
+   });
+
+   // Save profile changes
+   document.getElementById('save-profile-btn').addEventListener('click', () => {
+       const formData = new FormData();
+       formData.append('name', document.getElementById('edit-name').value);
+       formData.append('age', document.getElementById('edit-age').value);
+       formData.append('gender', document.getElementById('edit-gender').value);
+       formData.append('location', document.getElementById('edit-location').value);
+
+       const fileInput = document.getElementById('profile-pic-upload');
+       if (fileInput.files[0]) {
+           formData.append('profile_picture', fileInput.files[0]);
+       }
+
+       fetch('php/updateProfile.php', {
+           method: 'POST',
+           body: formData
+       })
+           .then(response => response.json())
+           .then(data => {
+               if (data.success) {
+                   // Update view with new data
+                   document.getElementById('profile-name').innerText = data.name;
+                   document.getElementById('profile-age').innerText = data.age;
+                   document.getElementById('profile-gender').innerText = data.gender;
+                   document.getElementById('profile-location').innerText = data.location;
+
+                   if (data.profile_picture) {
+                       document.getElementById('current-profile-picture').src = data.profile_picture;
+                   }
+
+                   // Toggle back to view profile
+                   document.getElementById('profile-view').style.display = 'block';
+                   document.getElementById('profile-edit').style.display = 'none';
+               }
+           });
+   });
+});
+
+// References to elements
+const profileView = document.getElementById('profile-view');
+const profileEdit = document.getElementById('profile-edit');
+const editProfileBtn = document.getElementById('edit-profile-btn');
+const closeProfileBtn = document.getElementById('close-profile-btn');
+const saveProfileBtn = document.getElementById('save-profile-btn');
+const cancelEditBtn = document.getElementById('cancel-edit-btn');
+
+// Show edit mode
+editProfileBtn.addEventListener('click', () => {
+    profileView.style.display = 'none';
+    profileEdit.style.display = 'block';
+});
+
+// Close profile view
+closeProfileBtn.addEventListener('click', () => {
+    profileView.style.display = 'none';
+});
+
+// Save profile (example logic)
+saveProfileBtn.addEventListener('click', () => {
+    // Save logic (to be implemented)
+    profileEdit.style.display = 'none';
+    profileView.style.display = 'block';
+});
+
+// Cancel edit
+cancelEditBtn.addEventListener('click', () => {
+    profileEdit.style.display = 'none';
+    profileView.style.display = 'block';
+});
+
+
+function toggleRegisterForm(showRegister) {
+    var loginForm = document.querySelector('form[action="php/login.php"]');
+    var registerForm = document.getElementById('registerForm');
+
+    if (showRegister) {
+        // Show the register form and hide the login form
+        loginForm.style.display = 'none';
+        registerForm.style.display = 'block';
+    } else {
+        // Show the login form and hide the register form
+        loginForm.style.display = 'block';
+        registerForm.style.display = 'none';
+        resetLoginForm();  // Reset the login form fields
+    }
+}
+
+function resetLoginForm() {
+    // Reset the login form fields
+    document.getElementById("login-username").value = "";
+    document.getElementById("login-password").value = "";
+}
+
+function validatePassword() {
+    var password = document.getElementById("register-password").value;
+    var confirmPassword = document.getElementById("confirm_password").value;
+
+    if (password !== confirmPassword) {
+        alert("Passwords do not match.");
+        return false; // Prevent form submission
+    }
+
+    return true; // Allow form submission
+}
+}
