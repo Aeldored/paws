@@ -405,7 +405,7 @@ body {
 	justify-content: space-between;
 	align-items: center;
 	padding: 12px;
-	border: 1px solid #ddd;
+	border: 1px solid var(--lightbg);
 	border-radius: 8px;
 	margin-bottom: 10px;
 	background-color: var(--light);
@@ -625,7 +625,7 @@ body {
 .email-container {
 	padding: 5px;
 	font-size: 1em;
-	border: 1px solid #ccc;
+	border: 1px solid var(--lightbg);
 	border-radius: 5px;
 	outline: none;
 	color: white;
@@ -704,7 +704,7 @@ body {
 .popover-card button {
 	padding: 10px;
 	font-size: 1em;
-	border: 1px solid #ccc;
+	border: 1px solid var(--lightbg);
 	border-radius: 5px;
 	outline: none;
 	color: white;
@@ -798,7 +798,7 @@ body {
 	flex: 1;
 	padding: 10px;
 	font-size: 1em;
-	border: 1px solid #ccc;
+	border: 1px solid var(--lightbg);
 	border-radius: 5px;
 	border: none;
 	outline: none;
@@ -849,7 +849,7 @@ body {
 	padding: 20px;
 	border-radius: 8px;
 	background: rgba(var(--light), 0.7);
-	border: 1px solid #ddd;
+	border: 1px solid var(--lightbg);
 	align-items: flex-start;
 }
 
@@ -862,7 +862,7 @@ body {
 	padding: 20px;
 	border-radius: 8px;
 	background: rgba(var(--light), 0.7);
-	border: 1px solid #ddd;
+	border: 1px solid var(--light);
 	align-items: flex-start;
 }
 
@@ -926,7 +926,7 @@ body {
 #rehomePopover table td,
 #applicationsPopover table th,
 #applicationsPopover table td {
-	border: 1px solid #ddd;
+	border: 1px solid var(--lightbg);
 	padding: 8px;
 	text-align: center;
 	border-radius: 5px;
@@ -1317,7 +1317,7 @@ body.dark .animal-card {
 }
 
 .adopt-button:hover,
-#adopt-button:hover {
+#adopt-button:hover,  .donate-button:hover, #rehomeButton:hover {
 	background: #4CAF50;
 	color: var(--darkbg);
 	font-weight: bold;
@@ -1390,7 +1390,7 @@ body.dark .animal-card {
 	align-items: center;
 	justify-content: center;
 	background-color: rgba(200, 200, 200, 0.3);
-	border: 2px dashed #cccccc;
+	border: 2px dashed var(--lightbg);
 	border-radius: 20px;
 	cursor: pointer;
 	transition: all 0.3s ease;
@@ -1422,19 +1422,24 @@ body.dark .animal-card {
 }
 
 .tab-button.active {
-	background-color: #4CAF50;
-	color: white;
+	background-color: var(--primary);
+	color: var(--lightbg);
 }
 
 .tab-button {
-	padding: 10px 20px;
-	border: 1px solid #ccc;
-	cursor: pointer;
-	border-radius: 5px;
+	background: var(--grey);
+    color: var(--darkbg);
+    border: none;
+    border-radius: 5px;
+    padding: 10px 16px;
+    cursor: pointer;
+    transition: all 0.3s ease;
 }
 
 .tab-button:hover {
-	background-color: #ddd;
+	background: var(--primary);
+    color: var(--light);
+    font-weight: bold;
 }
 
 #add-pet-modal {
@@ -1496,21 +1501,21 @@ body.dark .animal-card {
 	padding: 10px;
 	margin: 5px 0;
 	font-size: 1em;
-	border: 1px solid #ccc;
+	border: 1px solid var(--lightbg);
 	border-radius: 5px;
 	outline: none;
 	transition: border-color 0.3s ease;
 }
 
 #add-pet-modal form button {
-	background-color: #388E3C;
-	color: white;
+	background-color: var(--primary);
+	color: var(--lightbg);
 	border: none;
 	cursor: pointer;
 }
 
 #add-pet-modal form button:hover {
-	background-color: #2c6d2f;
+	background-color: var(--primary);
 }
 
 #pet-overlay {
@@ -1695,7 +1700,7 @@ body.dark .donate-card {
 	display: inline-block;
 	margin-top: 15px;
 	padding: 10px 20px;
-	background-color: #388E3C;
+	background-color: var(--primary);
 	color: #fff;
 	border-radius: 5px;
 	text-decoration: none;
@@ -1740,7 +1745,7 @@ body.dark .donate-card {
     text-align: center;
     font-size: 1.2rem;
     margin-bottom: 20px;
-	color: var(--darkbg);
+    color: var(--darkbg);
 }
 
 .faq-container {
@@ -1749,7 +1754,7 @@ body.dark .donate-card {
 }
 
 .faq-item {
-    border-bottom: 1px solid #ddd;
+    border-bottom: 1px solid var(--lightbg);
     padding: 15px 0;
 }
 
@@ -1767,7 +1772,7 @@ body.dark .donate-card {
     display: none; /* Hidden by default */
     padding: 10px 0;
     font-size: 1rem;
-	color: var(--darkbg);
+    color: var(--darkbg);
     animation: faqFadeIn 0.3s ease-in-out;
 }
 
@@ -1851,7 +1856,7 @@ body.dark .donate-card {
 }
 
 .contact-info ul li a {
-	color: #2ecc71;
+	color: var(--primary);
 	text-decoration: none;
 }
 
@@ -1895,7 +1900,7 @@ body.dark .donate-card {
 .rehome-section button {
 	padding: 10px 100px;
 	margin-top: 15px;
-	background-color: #388E3C;
+	background-color: var(--primary);
 	color: white;
 	border: none;
 	border-radius: 5px;
