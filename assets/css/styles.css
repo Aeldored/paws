@@ -258,9 +258,9 @@ body {
 	width: calc(100% - 200px);
 	left: 200px;
 	transition: all 0.3s ease;
-	-ms-overflow-style: none;
+	/* -ms-overflow-style: none; */
 	overflow: auto;
-	scrollbar-width: none;
+	/* scrollbar-width: none; */
 }
 
 .sidebar.close~.content {
@@ -658,7 +658,7 @@ body {
 	border: 1px solid rgba(0, 0, 0, 0.1);
 	transition: transform 0.3s ease, box-shadow 0.3s ease;
 	overflow: auto;
-	scrollbar-width: none;
+	/* scrollbar-width: none; */
 }
 
 @keyframes fadeIn {
