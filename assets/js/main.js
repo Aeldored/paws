@@ -2223,7 +2223,7 @@ if (window.location.pathname.includes('admin.html')) {
    }
 }
 
-if (window.location.pathname === '/FurHomes/admin.html') {
+if (window.location.pathname.includes('admin.html')) {
    var inactivityTimeout = 15 * 60 * 1000;
    var timeoutWarning;
    var lastActivityTime = Date.now();
@@ -2239,16 +2239,23 @@ if (window.location.pathname === '/FurHomes/admin.html') {
       lastActivityTime = Date.now();
    }
 
-   window.onload = function () {
+   window.addEventListener('load', function () {
       resetTimer();
 
-      document.addEventListener('mousemove', resetTimer);
-      document.addEventListener('keypress', resetTimer);
+      document.addEventListener('mousemove', function(event) {
+         if (event.target.closest('.modal')) return;
+         resetTimer();
+      });
+
+      document.addEventListener('keypress', function(event) {
+         if (event.target.closest('.modal')) return;
+         resetTimer();
+      });
 
       setInterval(function () {
          var inactivityDuration = (Date.now() - lastActivityTime) / 1000;
          console.clear();
          console.log(`Inactivity Timer: ${inactivityDuration.toFixed(1)} seconds`);
       }, 1000);
-   };
+   });
 }
