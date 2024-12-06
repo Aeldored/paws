@@ -2187,40 +2187,40 @@ if (window.location.pathname.includes('admin.html')) {
       profileEdit.style.display = 'none';
       profileView.style.display = 'block';
    });
+}
 
-   function toggleRegisterForm(showRegister) {
-      var loginForm = document.querySelector('form[action="php/login.php"]');
-      var registerForm = document.getElementById('registerForm');
+function toggleRegisterForm(showRegister) {
+   var loginForm = document.querySelector('form[action="php/login.php"]');
+   var registerForm = document.getElementById('registerForm');
 
-      if (showRegister) {
+   if (showRegister) {
 
-         loginForm.style.display = 'none';
-         registerForm.style.display = 'block';
-      } else {
+      loginForm.style.display = 'none';
+      registerForm.style.display = 'block';
+   } else {
 
-         loginForm.style.display = 'block';
-         registerForm.style.display = 'none';
-         resetLoginForm();
-      }
+      loginForm.style.display = 'block';
+      registerForm.style.display = 'none';
+      resetLoginForm();
+   }
+}
+
+function resetLoginForm() {
+   document.getElementById("username").value = ""; 
+   document.getElementById("password").value = ""; 
+}
+
+
+function validatePassword() {
+   var password = document.getElementById("register-password").value;
+   var confirmPassword = document.getElementById("confirm_password").value;
+
+   if (password !== confirmPassword) {
+      alert("Passwords do not match.");
+      return false;
    }
 
-   function resetLoginForm() {
-
-      document.getElementById("login-username").value = "";
-      document.getElementById("login-password").value = "";
-   }
-
-   function validatePassword() {
-      var password = document.getElementById("register-password").value;
-      var confirmPassword = document.getElementById("confirm_password").value;
-
-      if (password !== confirmPassword) {
-         alert("Passwords do not match.");
-         return false;
-      }
-
-      return true;
-   }
+   return true;
 }
 
 if (window.location.pathname.includes('admin.html')) {
