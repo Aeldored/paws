@@ -1,4 +1,4 @@
-# Furever Homes 🐾
+# FurHomes 🐾
 A pet adoption website focused on helping stray and abandoned animals in the Philippines. Created by students from Batangas State University.
 
 ## Table of Contents
@@ -7,7 +7,7 @@ A pet adoption website focused on helping stray and abandoned animals in the Phi
 - [Technologies Used](#technologies-used)
 
 ## Project Overview
-**Furever Homes** is a non-profit initiative aimed at facilitating pet adoptions, educating the public, and raising awareness about animal welfare. Visitors can adopt pets, donate, sponsor, or volunteer to foster animals in need.
+**FurHomes** is a non-profit initiative aimed at facilitating pet adoptions, educating the public, and raising awareness about animal welfare. Visitors can adopt pets, donate, sponsor, or volunteer to foster animals in need.
 
 ## Features
 - **Home:** Overview of the organization and options to donate, sponsor, or foster.
@@ -25,4 +25,4 @@ A pet adoption website focused on helping stray and abandoned animals in the Phi
 
 ---
 
-**Furever Homes - Adopt, Donate and Save Lives**
+**FurHomes - Adopt, Donate and Save Lives**
